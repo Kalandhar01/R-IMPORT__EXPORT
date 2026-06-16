@@ -16,10 +16,10 @@ export async function GET(request: Request) {
   else if (read === "false") where.read = false;
 
   if (search) {
-    where.OR = [
-      { name: { contains: search } },
-      { email: { contains: search } },
-      { company: { contains: search } },
+    where.$or = [
+      { name: { $regex: search, $options: "i" } },
+      { email: { $regex: search, $options: "i" } },
+      { company: { $regex: search, $options: "i" } },
     ];
   }
 

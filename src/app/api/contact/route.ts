@@ -45,7 +45,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const submission = await prisma.submission.create({
+    const submission = (await prisma.submission.create({
       data: {
         name,
         email,
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
         services: services ? (Array.isArray(services) ? services.join(", ") : services) : null,
         message: message || null,
       },
-    });
+    }))! as { id: string; read: boolean; createdAt: string; [key: string]: unknown };
 
     try {
       const { Resend } = await import("resend");
