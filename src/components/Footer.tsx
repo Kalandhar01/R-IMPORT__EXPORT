@@ -30,23 +30,16 @@ const services = [
   "Freight",
   "Supply Chain",
 ];
-const locations = [
-  "India",
-  "USA",
-  "UK",
-  "Germany",
+const footerLinks = [
+  { title: "Quick Links", items: quickLinks },
+  { title: "Services", items: services },
 ];
+
 const socialLinks = [
   { icon: Globe, href: "#", label: "Website" },
   { icon: ExternalLink, href: "#", label: "LinkedIn" },
   { icon: X, href: "#", label: "X (Twitter)" },
   { icon: Mail, href: "#", label: "Email" },
-];
-
-const footerLinks = [
-  { title: "Quick Links", items: quickLinks },
-  { title: "Services", items: services },
-  { title: "Global Locations", items: locations },
 ];
 
 export default function Footer() {
@@ -167,16 +160,23 @@ export default function Footer() {
           {/* Brand Column */}
           <div ref={(el) => setRevealRef(el, 0)} className="col-span-2 md:col-span-2 lg:col-span-4">
             <div className="flex items-center gap-3">
-              <Image
-                src="/logo.png"
-                alt="Ractysh Global Trade"
-                width={200}
-                height={56}
-                className="h-8 w-auto object-contain brightness-110 sm:h-10"
-              />
-              <span className="hidden text-base font-bold tracking-tight text-white sm:inline">
-                Ractysh <span className="text-[#b8860b]">Global Trade</span>
-              </span>
+              <div className="relative h-12 w-12 shrink-0 overflow-hidden sm:h-14 sm:w-14">
+                <Image
+                  src="/logo.png"
+                  alt="Ractysh Global Trade"
+                  fill
+                  sizes="56px"
+                  className="object-contain"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-base font-bold leading-tight tracking-tight text-white sm:text-lg">
+                  RACTYSH
+                </span>
+                <span className="text-[10px] font-medium tracking-[0.15em] text-[#D4AF37] sm:text-[11px]">
+                  Global Trade
+                </span>
+              </div>
             </div>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-400 sm:mt-4">
               Premium import, export, and logistics solutions connecting
@@ -246,9 +246,9 @@ export default function Footer() {
               <li className="flex items-start gap-3 text-sm text-slate-400">
                 <MapPin size={14} className="mt-0.5 shrink-0 text-amber-400" />
                 <span>
-                  Fort House, 221 Dr. D.N. Road,
+                  Coimbatore · Palani · Dindigul,
                   <br />
-                  Mumbai 400001, India
+                  Tamil Nadu, India
                 </span>
               </li>
             </ul>

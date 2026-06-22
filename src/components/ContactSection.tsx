@@ -2,8 +2,23 @@
 
 import { type FormEvent, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Check } from "lucide-react";
-import { services } from "@/lib/services-data";
+import { Mail, Phone, MapPin, Check, ArrowRight } from "lucide-react";
+
+const exportCategories = [
+  "Spices",
+  "Food Products",
+  "Bamboo Salt",
+  "Infrastructure Materials",
+  "Home Appliances",
+  "Electronics & Electricals",
+  "Agro Products",
+  "Handicrafts & Heritage",
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0 },
+};
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -37,9 +52,7 @@ export default function ContactSection() {
           name: formData.get("name"),
           email: formData.get("email"),
           phone: formData.get("phone"),
-          company: formData.get("company"),
           services: selectedServices,
-          message: formData.get("message"),
         }),
       });
 
@@ -62,269 +75,247 @@ export default function ContactSection() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-b from-[#f8f7f4] to-white px-6 py-24 md:px-12 lg:px-24 lg:py-28"
+      className="relative overflow-hidden bg-[#050B1A] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28"
     >
       {/* Background Effects */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(184,134,11,0.06),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(184,134,11,0.04),transparent_50%)]" />
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0"
           style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
+            background: "radial-gradient(ellipse at 30% 20%, rgba(212,175,55,0.05) 0%, transparent 60%)",
           }}
         />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse at 70% 80%, rgba(212,175,55,0.03) 0%, transparent 50%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          variants={fadeUp}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-12 text-center sm:mb-16"
         >
-          <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#b8860b]">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 text-[10px] font-medium tracking-[0.2em] text-[#D4AF37]/80 uppercase sm:text-[11px]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]" />
             Get In Touch
           </span>
-          <h2 className="mt-3 font-serif text-4xl font-bold text-[#111827] md:text-5xl">
+          <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.5rem)] font-bold leading-[1.1] tracking-tight text-white">
             Let&apos;s Talk Trade
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-[#6b7280]/70">
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/35 sm:text-base">
             Ready to optimize your global supply chain? Reach out and our trade
             advisors will respond within 24 hours.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[0.65fr_1.35fr] lg:gap-20">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:gap-16">
           {/* Left Column — Office Info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15 }}
+            initial="hidden"
+            animate={isInView ? "show" : "hidden"}
+            variants={fadeUp}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="space-y-6"
           >
-            <div className="space-y-8">
-              <div className="rounded-2xl border border-gray-200/60 bg-white/60 p-6 backdrop-blur-sm">
-                <h3 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-[#b8860b]">
-                  <MapPin size={14} />
-                  India Office — Tamil Nadu
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-[#6b7280]/80">
-                  Coimbatore · Palani · Thidugul
-                </p>
-              </div>
-
+            {/* Office Card */}
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-6 backdrop-blur-sm">
+              <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#D4AF37]">
+                <MapPin size={14} />
+                India Office — Tamil Nadu
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/45">
+                Coimbatore · Palani · Dindigul
+              </p>
             </div>
 
-            <div className="mt-8 space-y-4 rounded-2xl border border-gray-200/60 bg-white/60 p-6 backdrop-blur-sm">
+            {/* Contact Details */}
+            <div className="space-y-3 rounded-xl border border-white/[0.06] bg-white/[0.03] p-6 backdrop-blur-sm">
               <div className="flex items-center gap-4">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#b8860b]/10 text-[#b8860b]">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#D4AF37]/20 bg-[#D4AF37]/10 text-[#D4AF37]">
                   <Mail size={14} />
                 </span>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#b8860b]">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#D4AF37]/70">
                     Email
                   </p>
                   <a
                     href="mailto:trade@ractysh.com"
-                    className="text-sm text-[#6b7280] transition hover:text-[#b8860b]"
+                    className="text-sm text-white/60 transition hover:text-[#D4AF37]"
                   >
                     trade@ractysh.com
                   </a>
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#b8860b]/10 text-[#b8860b]">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#D4AF37]/20 bg-[#D4AF37]/10 text-[#D4AF37]">
                   <Phone size={14} />
                 </span>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#b8860b]">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#D4AF37]/70">
                     Phone
                   </p>
-                  <span className="text-sm text-[#6b7280]">+91 98765 43210</span>
+                  <span className="text-sm text-white/60">+91 98765 43210</span>
                 </div>
               </div>
+            </div>
+
+            {/* Trust Note */}
+            <div className="rounded-xl border border-[#D4AF37]/10 bg-gradient-to-br from-[#D4AF37]/5 to-transparent p-5">
+              <p className="text-xs leading-relaxed text-[#D4AF37]/60">
+                &ldquo;We typically respond within 24 hours on business days. All
+                inquiries are handled with strict confidentiality.&rdquo;
+              </p>
             </div>
           </motion.div>
 
           {/* Right Column — Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.25 }}
+            initial="hidden"
+            animate={isInView ? "show" : "hidden"}
+            variants={fadeUp}
+            transition={{ duration: 0.6, delay: 0.25 }}
           >
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-gray-200/60 bg-white/80 p-8 shadow-lg shadow-gray-200/50 backdrop-blur-sm md:p-10"
+              className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-sm sm:p-8 md:p-10"
             >
               {submitted ? (
                 <div className="flex flex-col items-center justify-center py-8 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#b8860b]/10">
-                    <Check className="h-8 w-8 text-[#b8860b]" />
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10">
+                    <Check className="h-8 w-8 text-[#D4AF37]" />
                   </div>
-                  <h3 className="mt-6 text-xl font-semibold text-[#111827]">
+                  <h3 className="mt-6 font-serif text-xl font-semibold text-white">
                     Thank You
                   </h3>
-                  <p className="mt-2 text-sm text-[#6b7280]">
+                  <p className="mt-2 max-w-xs text-sm text-white/45">
                     Your message has been received. Our trade team will contact
                     you within 24 hours.
                   </p>
                 </div>
               ) : (
-              <>
-              {/* Name + Email */}
-              <div className="grid gap-5 sm:grid-cols-2">
-                <label className="block">
-                  <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[#6b7280]/70">
-                    Full Name <span className="text-[#b8860b]">*</span>
-                  </span>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    placeholder="John Doe"
-                    className="h-12 w-full border border-gray-200/80 bg-white px-4 text-sm text-[#111827] placeholder-[#6b7280]/40 outline-none transition focus:border-[#b8860b] focus:ring-1 focus:ring-[#b8860b]/20"
-                  />
-                </label>
-                <label className="block">
-                  <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[#6b7280]/70">
-                    Email Address <span className="text-[#b8860b]">*</span>
-                  </span>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    placeholder="john@company.com"
-                    className="h-12 w-full border border-gray-200/80 bg-white px-4 text-sm text-[#111827] placeholder-[#6b7280]/40 outline-none transition focus:border-[#b8860b] focus:ring-1 focus:ring-[#b8860b]/20"
-                  />
-                </label>
-              </div>
+                <>
+                  {/* Name + Email */}
+                  <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+                    <label className="block">
+                      <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+                        Full Name <span className="text-[#D4AF37]">*</span>
+                      </span>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        placeholder="John Doe"
+                        className="h-12 w-full border border-white/10 bg-white/[0.04] px-4 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#D4AF37]/50 focus:bg-white/[0.06]"
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+                        Email Address <span className="text-[#D4AF37]">*</span>
+                      </span>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="john@company.com"
+                        className="h-12 w-full border border-white/10 bg-white/[0.04] px-4 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#D4AF37]/50 focus:bg-white/[0.06]"
+                      />
+                    </label>
+                  </div>
 
-              {/* Phone + Company */}
-              <div className="mt-5 grid gap-5 sm:grid-cols-2">
-                <label className="block">
-                  <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[#6b7280]/70">
-                    Phone <span className="text-[#b8860b]">*</span>
-                  </span>
-                  <input
-                    type="tel"
-                    name="phone"
-                    required
-                    placeholder="+91 98765 43210"
-                    className="h-12 w-full border border-gray-200/80 bg-white px-4 text-sm text-[#111827] placeholder-[#6b7280]/40 outline-none transition focus:border-[#b8860b] focus:ring-1 focus:ring-[#b8860b]/20"
-                  />
-                </label>
-                <label className="block">
-                  <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[#6b7280]/70">
-                    Company
-                  </span>
-                  <input
-                    type="text"
-                    name="company"
-                    placeholder="Your company name"
-                    className="h-12 w-full border border-gray-200/80 bg-white px-4 text-sm text-[#111827] placeholder-[#6b7280]/40 outline-none transition focus:border-[#b8860b] focus:ring-1 focus:ring-[#b8860b]/20"
-                  />
-                </label>
-              </div>
+                  {/* Phone */}
+                  <div className="mt-4">
+                    <label className="block">
+                      <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+                        Phone <span className="text-[#D4AF37]">*</span>
+                      </span>
+                      <input
+                        type="tel"
+                        name="phone"
+                        required
+                        placeholder="+91 98765 43210"
+                        className="h-12 w-full border border-white/10 bg-white/[0.04] px-4 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#D4AF37]/50 focus:bg-white/[0.06]"
+                      />
+                    </label>
+                  </div>
 
-              {/* Services of Interest */}
-              <div className="mt-5">
-                <span className="mb-3 block text-xs font-semibold uppercase tracking-wider text-[#6b7280]/70">
-                  Services Interested In
-                </span>
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
-                  {services.map((service) => {
-                    const isSelected = selectedServices.includes(service.title);
-                    return (
-                      <button
-                        key={service.title}
-                        type="button"
-                        onClick={() => toggleService(service.title)}
-                        className={`flex items-center gap-2 rounded-lg border px-3 py-3 text-left text-sm font-medium transition-all duration-200 ${
-                          isSelected
-                            ? "border-[#b8860b] bg-[#b8860b]/10 text-[#b8860b]"
-                            : "border-gray-200/80 bg-white text-[#6b7280] hover:border-[#b8860b]/40 hover:bg-[#b8860b]/5"
-                        }`}
-                      >
-                        <span
-                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded border transition-all ${
-                            isSelected
-                              ? "border-[#b8860b] bg-[#b8860b] text-white"
-                              : "border-gray-300 bg-white"
-                          }`}
-                        >
-                          {isSelected && <Check size={12} strokeWidth={3} />}
-                        </span>
-                        {service.title}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+                  {/* Services of Interest */}
+                  <div className="mt-5">
+                    <span className="mb-2.5 block text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+                      Services Interested In
+                    </span>
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+                      {exportCategories.map((category) => {
+                        const isSelected = selectedServices.includes(category);
+                        return (
+                          <button
+                            key={category}
+                            type="button"
+                            onClick={() => toggleService(category)}
+                            className={`flex items-center gap-2 rounded-lg border px-3 py-2.5 text-left text-xs font-medium transition-all duration-200 ${
+                              isSelected
+                                ? "border-[#D4AF37]/40 bg-[#D4AF37]/10 text-[#D4AF37]"
+                                : "border-white/10 bg-white/[0.03] text-white/50 hover:border-[#D4AF37]/30 hover:bg-[#D4AF37]/5"
+                            }`}
+                          >
+                            <span
+                              className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-all ${
+                                isSelected
+                                  ? "border-[#D4AF37] bg-[#D4AF37] text-[#050B1A]"
+                                  : "border-white/20 bg-transparent"
+                              }`}
+                            >
+                              {isSelected && <Check size={10} strokeWidth={3} />}
+                            </span>
+                            {category}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
 
-              {/* Budget Range */}
-              <div className="mt-5">
-                <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[#6b7280]/70">
-                  Estimated Monthly Volume
-                </span>
-                <select name="volume" className="h-12 w-full border border-gray-200/80 bg-white px-4 text-sm text-[#111827] outline-none transition focus:border-[#b8860b] focus:ring-1 focus:ring-[#b8860b]/20">
-                  <option value="">Select volume range...</option>
-                  <option>Under 100 CBM / 5 MT</option>
-                  <option>100–500 CBM / 5–20 MT</option>
-                  <option>500–2,000 CBM / 20–100 MT</option>
-                  <option>2,000–10,000 CBM / 100–500 MT</option>
-                  <option>10,000+ CBM / 500+ MT</option>
-                  <option>Not sure yet</option>
-                </select>
-              </div>
 
-              {/* Message */}
-              <div className="mt-5">
-                <label className="block">
-                  <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[#6b7280]/70">
-                    Message <span className="text-[#b8860b]">*</span>
-                  </span>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    required
-                    placeholder="Tell us about your shipping requirements, timelines, and destination markets..."
-                    className="min-h-[110px] w-full resize-none border border-gray-200/80 bg-white px-4 py-3 text-sm text-[#111827] placeholder-[#6b7280]/40 outline-none transition focus:border-[#b8860b] focus:ring-1 focus:ring-[#b8860b]/20"
-                  />
-                </label>
-              </div>
 
-              <button
-                type="submit"
-                disabled={submitting}
-                className="mt-6 inline-flex h-13 w-full items-center justify-center gap-3 bg-gradient-to-r from-[#b8860b] to-[#9a7209] px-8 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-[#b8860b]/20 transition-all duration-300 hover:from-[#c9951e] hover:to-[#a87e0d] hover:shadow-[#b8860b]/30 disabled:opacity-50"
-              >
-                {submitting ? (
-                  <>
-                    <svg className="size-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send size={16} />
-                    Send Message
-                  </>
-                )}
-              </button>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="mt-6 flex h-13 w-full items-center justify-center gap-3 bg-gradient-to-r from-[#D4AF37] to-[#E8C84A] px-8 text-sm font-bold uppercase tracking-wider text-[#050B1A] shadow-lg shadow-[#D4AF37]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4AF37]/30 disabled:opacity-50"
+                  >
+                    {submitting ? (
+                      <>
+                        <svg className="size-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <ArrowRight size={16} />
+                      </>
+                    )}
+                  </button>
 
-              {error && (
-                <p className="mt-4 text-center text-sm text-red-500">{error}</p>
-              )}
-
-              <p className="mt-4 text-center text-xs text-[#6b7280]/50">
-                We typically respond within 24 hours on business days.
-              </p>
-              </>
+                  {error && (
+                    <p className="mt-4 text-center text-sm text-red-400">{error}</p>
+                  )}
+                </>
               )}
             </form>
           </motion.div>

@@ -59,7 +59,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ThemeProvider attribute="class" forcedTheme="light">
+        <ThemeProvider attribute="class" forcedTheme="light" enableColorScheme={false}>
           {children}
         </ThemeProvider>
       </body>

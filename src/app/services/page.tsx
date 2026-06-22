@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/data/services";
 import { cn } from "@/lib/utils";
+import WhatWeExport from "@/components/WhatWeExport";
 import Footer from "@/components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -257,6 +258,8 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      <WhatWeExport />
 
       <section className="px-6 pb-20 sm:px-10 lg:px-16 lg:pb-28">
         <div className="mx-auto max-w-[92rem]">

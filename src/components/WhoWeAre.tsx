@@ -11,6 +11,7 @@ import {
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,10 +85,12 @@ export default function WhoWeAre() {
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <div className="who-reveal relative opacity-0">
             <div className="relative aspect-[4/5] w-full overflow-hidden">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80"
                 alt="Global trade team"
-                className="h-full w-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-[#0f172a]/60 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">

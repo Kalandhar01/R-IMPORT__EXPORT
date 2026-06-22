@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -127,8 +128,8 @@ export default function Testimonials() {
             </div>
             <p className="text-base leading-relaxed text-[#6b7280] md:text-lg">&ldquo;{testimonials[activeIndex].content}&rdquo;</p>
             <div className="mt-6 flex items-center gap-4 border-t border-gray-100 pt-6">
-              <div className="h-12 w-12 overflow-hidden rounded-full bg-[#b8860b]/10">
-                <img src={testimonials[activeIndex].image} alt={testimonials[activeIndex].name} className="h-full w-full object-cover" />
+              <div className="relative h-12 w-12 overflow-hidden rounded-full bg-[#b8860b]/10">
+                <Image src={testimonials[activeIndex].image} alt={testimonials[activeIndex].name} fill className="object-cover" sizes="48px" />
               </div>
               <div>
                 <p className="text-sm font-bold text-[#111827]">{testimonials[activeIndex].name}</p>
