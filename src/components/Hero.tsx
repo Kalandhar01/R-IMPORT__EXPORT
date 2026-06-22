@@ -1,299 +1,66 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { Menu, X, ArrowRight } from "lucide-react";
-import FlaticonIcon from "@/components/ui/FlaticonIcon";
+import { Menu, X, ArrowRight, Shield, Globe, ClipboardCheck } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const NAV_LINKS = [
+const NAV_ITEMS = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/#services" },
   { label: "Contact", href: "/#contact" },
 ];
 
-const HUB_POSITIONS = [
-  { name: "Singapore", x: 395, y: 196 },
-  { name: "Dubai", x: 335, y: 148 },
-  { name: "Mumbai", x: 360, y: 172 },
-  { name: "Rotterdam", x: 260, y: 90 },
-  { name: "Hamburg", x: 268, y: 82 },
-  { name: "Los Angeles", x: 65, y: 118 },
-  { name: "Shanghai", x: 425, y: 128 },
-  { name: "Sydney", x: 448, y: 268 },
+const slides = [
+  {
+    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1920&auto=format",
+    title: "South Indian Spices Export",
+    items: ["Pepper", "Cardamom", "Turmeric", "Export Packaging"],
+  },
+  {
+    image: "https://images.unsplash.com/photo-1556761223-4c4282c73f77?q=80&w=1920&auto=format",
+    title: "Textiles & Garments",
+    items: ["Cotton Fabrics", "Traditional Textiles", "Export-Quality Clothing"],
+  },
+  {
+    image: "https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=1920&auto=format",
+    title: "Bamboo Salt & Wellness",
+    items: ["Premium Bamboo Salt", "Organic Wellness Products"],
+  },
+  {
+    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1920&auto=format",
+    title: "Home Appliances Export",
+    items: ["Kitchen Appliances", "Household Products", "Smart Home Devices"],
+  },
+  {
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format",
+    title: "Global Shipping & Logistics",
+    items: ["Container Ships", "International Ports", "Cargo Operations"],
+  },
+  {
+    image: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1920&auto=format",
+    title: "Food Products Export",
+    items: ["Rice", "Millets", "Coconut Products", "Agricultural Exports"],
+  },
+  {
+    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1920&auto=format",
+    title: "Infrastructure & Industrial",
+    items: ["Construction Materials", "Engineering Components", "Industrial Supplies"],
+  },
 ];
 
-const routes = [
-  { from: 0, to: 2 },
-  { from: 0, to: 6 },
-  { from: 1, to: 3 },
-  { from: 2, to: 1 },
-  { from: 4, to: 3 },
-  { from: 5, to: 6 },
-  { from: 6, to: 7 },
-  { from: 1, to: 5 },
-];
-
-const stats: { value: number; suffix: string; label: string; static?: boolean }[] = [
+const statsData = [
   { value: 100, suffix: "+", label: "Global Partners" },
   { value: 50, suffix: "+", label: "Countries Served" },
-  { value: 10000, suffix: "+", label: "Shipments" },
-  { value: 2025, suffix: "", label: "Established", static: true },
+  { value: 1000, suffix: "+", label: "Successful Shipments" },
+  { value: 10, suffix: "+", label: "Years Experience" },
 ];
 
-function AnimatedGlobe() {
-  const svgRef = useRef<SVGSVGElement>(null);
-
-  useEffect(() => {
-    if (!svgRef.current) return;
-    const el = svgRef.current;
-    const dots = el.querySelectorAll(".hub-dot");
-
-    gsap.to(el, {
-      rotation: 360,
-      duration: 80,
-      repeat: -1,
-      ease: "none",
-    });
-
-    dots.forEach((d) => {
-      gsap.to(d, {
-        r: "+=2",
-        opacity: 0.3,
-        duration: 2 + Math.random() * 2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    });
-  }, []);
-
-  return (
-    <svg
-      ref={svgRef}
-      viewBox="0 0 500 500"
-      className="h-[280px] w-[280px] max-w-full sm:h-[400px] sm:w-[400px] md:h-[500px] md:w-[500px] lg:h-[600px] lg:w-[600px]"
-      fill="none"
-    >
-      <defs>
-        <radialGradient id="glowG" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#B8860B" stopOpacity="0.15" />
-          <stop offset="60%" stopColor="#B8860B" stopOpacity="0.04" />
-          <stop offset="100%" stopColor="#B8860B" stopOpacity="0" />
-        </radialGradient>
-        <filter id="hubGlow">
-          <feGaussianBlur stdDeviation="2" result="b" />
-          <feMerge>
-            <feMergeNode in="b" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      <circle cx="250" cy="250" r="210" fill="url(#glowG)" />
-
-      {/* Latitude lines */}
-      {[60, 100, 140, 180, 220, 250, 280, 320, 360, 400, 440].map((r) => (
-        <circle key={r} cx="250" cy="250" r={r} stroke="#B8860B" strokeWidth="0.3" opacity={0.08 + (r > 200 ? 0.04 : 0)} />
-      ))}
-      {/* Longitude lines */}
-      {[0, 30, 60, 90, 120, 150, 180].map((angle) => (
-        <line
-          key={angle}
-          x1={250 + 210 * Math.cos((angle * Math.PI) / 180)}
-          y1={250 + 210 * Math.sin((angle * Math.PI) / 180)}
-          x2={250 + 210 * Math.cos(((angle + 180) * Math.PI) / 180)}
-          y2={250 + 210 * Math.sin(((angle + 180) * Math.PI) / 180)}
-          stroke="#B8860B"
-          strokeWidth="0.25"
-          opacity={0.06}
-        />
-      ))}
-
-      {/* Equator */}
-      <ellipse cx="250" cy="250" rx="210" ry="50" stroke="#B8860B" strokeWidth="0.4" opacity={0.15} />
-
-      {/* Outer ring */}
-      <circle cx="250" cy="250" r="210" stroke="#B8860B" strokeWidth="0.8" opacity={0.2} />
-
-      {/* Route arcs */}
-      {routes.map((r, i) => {
-        const f = HUB_POSITIONS[r.from];
-        const t = HUB_POSITIONS[r.to];
-        const mx = (f.x + t.x) / 2;
-        const my = (f.y + t.y) / 2 - 20;
-        return (
-          <path
-            key={i}
-            d={`M${f.x},${f.y} Q${mx},${my} ${t.x},${t.y}`}
-            stroke="#B8860B"
-            strokeWidth="0.6"
-            strokeDasharray="3 4"
-            opacity={0.2}
-            fill="none"
-          />
-        );
-      })}
-
-      {/* Hub dots */}
-      {HUB_POSITIONS.map((h, i) => (
-        <g key={i}>
-          <circle cx={h.x} cy={h.y} r={4} fill="#B8860B" opacity={0.5} filter="url(#hubGlow)" />
-          <circle cx={h.x} cy={h.y} r={7} fill="none" stroke="#B8860B" strokeWidth="0.4" opacity={0.2} className="hub-dot" />
-        </g>
-      ))}
-    </svg>
-  );
-}
-
-function DetailedContainerShip({ className }: { className?: string }) {
-  return <FlaticonIcon icon="fi-rr-ship-side" className={`text-amber-500/60 text-5xl ${className || ""}`} />;
-}
-
-function DetailedCargoPlane({ className }: { className?: string }) {
-  return <FlaticonIcon icon="fi-rr-plane-prop" className={`text-amber-500/50 text-4xl ${className || ""}`} />;
-}
-
-function DetailedTruck({ className }: { className?: string }) {
-  return <FlaticonIcon icon="fi-sr-truck-container" className={`text-amber-500/50 text-3xl ${className || ""}`} />;
-}
-
-function DetailedTrain({ className }: { className?: string }) {
-  return <FlaticonIcon icon="fi-rr-train-side" className={`text-amber-500/50 text-4xl ${className || ""}`} />;
-}
-
-function LogisticsScene() {
-  const sceneRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!sceneRef.current) return;
-    const ctx = gsap.context(() => {
-      // Ships moving right
-      gsap.to(".vessel-1", { x: "+=1400", duration: 28, repeat: -1, ease: "none" });
-      gsap.to(".vessel-2", { x: "+=1400", duration: 35, repeat: -1, ease: "none", delay: -12 });
-      gsap.to(".vessel-3", { x: "+=1400", duration: 32, repeat: -1, ease: "none", delay: -22 });
-      // Planes moving right
-      gsap.to(".air-1", { x: "+=1400", duration: 18, repeat: -1, ease: "none", delay: -5 });
-      gsap.to(".air-2", { x: "+=1400", duration: 22, repeat: -1, ease: "none", delay: -14 });
-      // Trucks moving right (slower)
-      gsap.to(".hauler-1", { x: "+=1000", duration: 16, repeat: -1, ease: "none" });
-      gsap.to(".hauler-2", { x: "+=1000", duration: 14, repeat: -1, ease: "none", delay: -8 });
-      // Train moving right
-      gsap.to(".rail-1", { x: "+=1200", duration: 20, repeat: -1, ease: "none", delay: -3 });
-      // Gentle bob for ships
-      gsap.to(".vessel-1, .vessel-2, .vessel-3", {
-        y: "+=3",
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }, sceneRef);
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <div ref={sceneRef} className="pointer-events-none absolute bottom-0 left-0 right-0 h-56 overflow-hidden">
-      {/* Horizon */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-500/10 to-transparent translate-y-[2px]" />
-
-      {/* Sea lane */}
-      <div className="absolute bottom-2 left-0 right-0 h-6 bg-gradient-to-r from-transparent via-amber-500/[0.02] to-transparent" />
-
-      {/* Ships (bottom lane) */}
-      <div className="absolute bottom-1 left-[-140px] vessel-1">
-        <DetailedContainerShip className="h-auto w-[110px]" />
-      </div>
-      <div className="absolute bottom-3 left-[-140px] vessel-2">
-        <DetailedContainerShip className="h-auto w-[90px] opacity-60" />
-      </div>
-      <div className="absolute bottom-0 left-[-140px] vessel-3">
-        <DetailedContainerShip className="h-auto w-[100px] opacity-70" />
-      </div>
-
-      {/* Air lane */}
-      {/* Planes (upper lane) */}
-      <div className="absolute bottom-28 left-[-120px] air-1">
-        <DetailedCargoPlane className="h-auto w-[90px]" />
-      </div>
-      <div className="absolute bottom-36 left-[-120px] air-2">
-        <DetailedCargoPlane className="h-auto w-[75px] opacity-50" />
-      </div>
-
-      {/* Road lane */}
-      <div className="absolute bottom-10 left-[-90px] hauler-1">
-        <DetailedTruck className="h-auto w-[65px]" />
-      </div>
-      <div className="absolute bottom-12 left-[-90px] hauler-2">
-        <DetailedTruck className="h-auto w-[55px] opacity-50" />
-      </div>
-
-      {/* Rail lane */}
-      <div className="absolute bottom-20 left-[-120px] rail-1">
-        <DetailedTrain className="h-auto w-[90px] opacity-60" />
-      </div>
-
-      {/* Lane markers */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-around">
-        <div className="h-px w-24 bg-gradient-to-r from-transparent via-amber-500/8 to-transparent" />
-        <div className="h-px w-20 bg-gradient-to-r from-transparent via-amber-500/6 to-transparent" />
-        <div className="h-px w-28 bg-gradient-to-r from-transparent via-amber-500/8 to-transparent" />
-        <div className="h-px w-16 bg-gradient-to-r from-transparent via-amber-500/6 to-transparent" />
-      </div>
-    </div>
-  );
-}
-
-function CountUp({ target, suffix, label, static: isStatic }: { target: number; suffix: string; label: string; static?: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const counted = useRef(false);
-
-  useEffect(() => {
-    if (isStatic) return;
-    const el = ref.current;
-    if (!el) return;
-    const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top 90%",
-        onEnter: () => {
-          if (counted.current) return;
-          counted.current = true;
-          gsap.fromTo(
-            { val: 0 },
-            { val: 0 },
-            {
-              val: target,
-              duration: 2.5,
-              ease: "power2.out",
-              onUpdate: function () {
-                const v = Math.round(this.targets()[0].val);
-                el!.textContent = `${v.toLocaleString()}${suffix}`;
-              },
-            },
-          );
-        },
-      });
-    }, el);
-    return () => ctx.revert();
-  }, [target, suffix, isStatic]);
-
-  return (
-    <div className="text-center">
-      <div ref={ref} className="text-3xl font-bold text-white md:text-4xl font-[family-name:var(--font-playfair)]">
-        {isStatic ? target : `0${suffix}`}
-      </div>
-      <div className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.15em] text-white/35 sm:text-[11px]">{label}</div>
-    </div>
-  );
-}
+const trustItems = [
+  { icon: Shield, text: "Verified Global Suppliers" },
+  { icon: Globe, text: "International Logistics Network" },
+  { icon: ClipboardCheck, text: "Customs & Compliance Support" },
+];
 
 export default function Hero() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -301,8 +68,9 @@ export default function Hero() {
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
   const heroRef = useRef<HTMLDivElement>(null);
-  const mobileStatsRef = useRef<HTMLDivElement>(null);
-  const [counted, setCounted] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -310,171 +78,171 @@ export default function Hero() {
       setScrolled(sy > 60);
       setHidden(sy > 120 && sy > lastScrollY.current);
       lastScrollY.current = sy;
+
+      if (heroRef.current) {
+        const scrolled = sy / window.innerHeight;
+        heroRef.current.style.setProperty("--parallax-offset", `${scrolled * 30}px`);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    if (!heroRef.current) return;
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.4 });
-      tl.from(".hero-overline", { y: 20, opacity: 0, duration: 0.6, ease: "power2.out" })
-        .from(".hero-heading .word", {
-          y: 80,
-          opacity: 0,
-          rotateX: -90,
-          stagger: 0.06,
-          duration: 1,
-          ease: "power3.out",
-        }, "-=0.3")
-        .from(".hero-subhead", { y: 30, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.6")
-        .from(".hero-cta > *", { y: 20, opacity: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" }, "-=0.3")
-        .from(".hero-stats > *", { y: 20, opacity: 0, duration: 0.5, stagger: 0.08, ease: "power2.out" }, "-=0.2")
-        .from(".hero-stats-mobile > *", { y: 20, opacity: 0, duration: 0.5, stagger: 0.08, ease: "power2.out" }, "-=0.2");
-    }, heroRef);
-    return () => ctx.revert();
+  const startAutoPlay = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4500);
   }, []);
 
   useEffect(() => {
-    if (!mobileStatsRef.current || counted) return;
-    const el = mobileStatsRef.current;
-    const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top 90%",
-        onEnter: () => {
-          setCounted(true);
-          el.querySelectorAll(".stat-value").forEach((target) => {
-            const t = target as HTMLElement;
-            const val = parseInt(t.dataset.target || "0", 10);
-            const suffix = t.dataset.suffix || "";
-            gsap.fromTo(
-              { val: 0 },
-              { val: 0 },
-              {
-                val,
-                duration: 2,
-                ease: "power2.out",
-                onUpdate: function () {
-                  t.textContent = `${Math.round(this.targets()[0].val).toLocaleString()}${suffix}`;
-                },
-              },
-            );
-          });
-        },
-      });
-    }, el);
-    return () => ctx.revert();
-  }, [counted]);
+    if (!isPaused) startAutoPlay();
+    else if (intervalRef.current) clearInterval(intervalRef.current);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPaused, startAutoPlay]);
 
-  const heading = "Global Trade. Without Boundaries.";
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const [statsVisible, setStatsVisible] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setStatsVisible(true), 1400);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 8000);
+  };
 
   return (
     <section
       ref={heroRef}
-      className="relative w-full overflow-hidden bg-[#0a0e17] md:h-screen"
+      className="relative min-h-screen w-full overflow-hidden bg-[#050B1A]"
+      style={{ "--parallax-offset": "0px" } as React.CSSProperties}
     >
-      {/* Background effects - reduced by 30% on mobile */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e17] via-[#0a0e17]/98 to-[#070b12]" />
-      <div className="pointer-events-none absolute inset-0 md:opacity-100 opacity-[0.7]"
-        style={{
-          background: "radial-gradient(ellipse at 50% 35%, rgba(184,134,11,0.07) 0%, transparent 55%)",
-        }}
-      />
-      <div className="pointer-events-none absolute inset-0 md:opacity-[0.02] opacity-[0.014]"
-        style={{
-          backgroundImage: "linear-gradient(rgba(184,134,11,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(184,134,11,0.3) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+      {/* Carousel Background */}
+      <div className="absolute inset-0">
+        {slides.map((slide, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              i === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.title}
+              fill
+              sizes="100vw"
+              className="object-cover"
+              style={{ transform: `translateY(var(--parallax-offset))` }}
+              priority={i === 0}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            />
+          </div>
+        ))}
 
-      <div className="hidden md:block">
-        <LogisticsScene />
+        {/* Dark Navy Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050B1A]/80 via-[#050B1A]/60 to-[#050B1A]/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050B1A]/40 to-transparent" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.05) 0%, transparent 60%)",
+          }}
+        />
       </div>
 
-      {/* Nav */}
+      {/* Top gold accent line */}
+      <div className="absolute left-0 right-0 top-0 z-30 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" />
+
+      {/* Navbar */}
       <nav
-        className={cn(
-          "fixed left-0 right-0 top-0 z-50 transition-all duration-500",
-          hidden ? "-translate-y-full" : "translate-y-0",
-          scrolled
-            ? "bg-[#0a0e17]/90 shadow-lg shadow-black/20 backdrop-blur-md"
-            : "bg-transparent",
-        )}
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
+          hidden ? "-translate-y-full" : "translate-y-0"
+        } ${scrolled ? "bg-[#050B1A]/90 shadow-lg shadow-black/30 backdrop-blur-md" : "bg-transparent"}`}
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="flex h-20 items-center justify-between">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+          <div className="flex h-[72px] items-center justify-between sm:h-20">
             <Link href="/" className="flex items-center gap-3">
-              <Image
-                src="/logo.png"
-                alt="Ractysh Global Trade"
-                width={140}
-                height={40}
-                className="h-9 w-auto object-contain"
-                priority
-              />
-              <span className="hidden text-base font-bold tracking-tight text-white sm:inline">
-                Ractysh <span className="text-[#b8860b]">Global Trade</span>
-              </span>
+              <div className="relative h-12 w-12 overflow-hidden sm:h-14 sm:w-14">
+                <Image
+                  src="/logo.png"
+                  alt="Ractysh Global Trade"
+                  fill
+                  sizes="56px"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-base font-bold leading-tight tracking-tight text-white sm:text-lg">
+                  RACTYSH
+                </span>
+                <span className="text-[10px] font-medium tracking-[0.15em] text-[#D4AF37] sm:text-[11px]">
+                  Global Trade
+                </span>
+              </div>
             </Link>
+
             <div className="hidden items-center gap-10 md:flex">
-              {NAV_LINKS.map((link) => (
+              {NAV_ITEMS.map((item) => (
                 <Link
-                  key={link.label}
-                  href={link.href}
-                  className="group relative text-xs tracking-[0.15em] text-white/60 uppercase transition-colors duration-300 hover:text-white"
+                  key={item.label}
+                  href={item.href}
+                  className="group relative text-xs tracking-[0.15em] text-white/50 uppercase transition-colors duration-300 hover:text-white"
                 >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 h-[1px] w-0 bg-amber-400 transition-all duration-300 group-hover:w-full" />
+                  {item.label}
+                  <span className="absolute -bottom-1 left-0 h-px w-0 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
               <Link
                 href="/#contact"
-                className="rounded-sm bg-amber-500 px-5 py-2.5 text-xs font-bold tracking-[0.15em] text-slate-900 uppercase transition-all duration-300 hover:bg-amber-400 shadow-lg shadow-amber-500/20"
+                className="rounded-sm bg-[#D4AF37] px-5 py-2.5 text-xs font-bold tracking-[0.15em] text-[#050B1A] uppercase transition-all duration-300 hover:bg-[#E0C042]"
               >
                 Get a Quote
               </Link>
             </div>
+
             <button
-              className="p-3 text-white md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 text-white transition-all hover:border-white/25 md:hidden"
               onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
+
         <div
-          className={cn(
-            "fixed left-0 right-0 top-20 z-40 md:hidden",
-            mobileOpen ? "pointer-events-auto" : "pointer-events-none",
-          )}
+          className={`fixed left-0 right-0 top-[72px] z-40 transition-all duration-300 sm:top-20 ${
+            mobileOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+          }`}
         >
-          <div
-            className={cn(
-              "mx-4 overflow-hidden rounded-lg border border-white/10 bg-[#0a0e17]/98 backdrop-blur-xl transition-all duration-300 ease-in-out",
-              mobileOpen ? "max-h-[400px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2",
-            )}
-          >
+          <div className="mx-4 overflow-hidden rounded-xl border border-white/10 bg-[#050B1A]/95 backdrop-blur-xl">
             <div className="space-y-1 px-5 pb-5 pt-4">
-              {NAV_LINKS.map((link) => (
+              {NAV_ITEMS.map((item) => (
                 <Link
-                  key={link.label}
-                  href={link.href}
-                  className="group block rounded-md px-4 py-3 text-sm tracking-wider text-white/60 uppercase transition-all hover:bg-white/5 hover:text-white"
+                  key={item.label}
+                  href={item.href}
+                  className="block rounded-lg px-4 py-3.5 text-sm tracking-wider text-white/50 uppercase transition-all hover:bg-white/5 hover:text-white"
                   onClick={() => setMobileOpen(false)}
                 >
-                  <span className="flex items-center justify-between">
-                    {link.label}
-                    <span className="h-px w-0 bg-amber-400/50 transition-all duration-300 group-hover:w-8" />
-                  </span>
+                  {item.label}
                 </Link>
               ))}
               <div className="pt-3">
                 <Link
                   href="/#contact"
-                  className="block rounded-sm bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-3.5 text-center text-xs font-bold tracking-[0.15em] text-slate-900 uppercase shadow-lg shadow-amber-500/10 transition-all hover:from-amber-400 hover:to-amber-500"
+                  className="block rounded-lg bg-[#D4AF37] px-5 py-3.5 text-center text-xs font-bold tracking-[0.15em] text-[#050B1A] uppercase shadow-lg shadow-[#D4AF37]/20"
                   onClick={() => setMobileOpen(false)}
                 >
                   Get a Quote
@@ -485,144 +253,194 @@ export default function Hero() {
         </div>
       </nav>
 
-      {/* Mobile content */}
-      <div className="flex flex-col px-6 pb-10 pt-28 md:hidden">
-        <div className="hero-overline mb-4">
-          <span className="font-mono inline-flex items-center gap-2 text-[10px] tracking-[0.25em] text-amber-400/70 uppercase">
-            <span className="h-px w-6 bg-amber-500/40" />
-            Premier Global Trade Partner
-          </span>
-        </div>
-
-        <h1 className="hero-heading font-[family-name:var(--font-playfair)] font-bold text-white"
-          style={{ fontSize: "clamp(2.5rem, 10vw, 4rem)", lineHeight: 0.95, letterSpacing: "-0.03em", maxWidth: "90%" }}
-        >
-          {heading.split(" ").map((word, i) => (
-            <span key={i} className="mr-[0.15em] inline-block overflow-hidden align-bottom">
-              <span className="word inline-block will-change-transform">{word}</span>
-            </span>
-          ))}
-        </h1>
-
-        <p className="hero-subhead mt-4 text-base leading-[1.8] text-white/45" style={{ maxWidth: "95%" }}>
-          Import, export, sourcing, logistics and supply chain solutions
-          connecting businesses across international markets.
-        </p>
-
-        <div className="hero-cta mt-6 flex flex-col gap-3">
-          <Link
-            href="/#contact"
-            className="flex h-14 w-full items-center justify-center gap-2.5 rounded-sm bg-gradient-to-r from-amber-500 to-amber-600 px-8 text-sm font-bold tracking-[0.15em] text-slate-900 uppercase transition-all duration-300 hover:from-amber-400 hover:to-amber-500"
-          >
-            Start Trading
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
-            href="/services"
-            className="flex h-14 w-full items-center justify-center gap-2.5 rounded-sm border border-white/15 px-8 text-sm font-bold tracking-[0.15em] text-white/70 uppercase transition-all duration-300 hover:border-white/30 hover:text-white"
-          >
-            Explore Services
-          </Link>
-        </div>
-
-        <div ref={mobileStatsRef} className="hero-stats-mobile mt-6 grid grid-cols-2 gap-2.5">
-          {stats.map((stat) => (
-            <div key={stat.label} className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-center backdrop-blur-sm">
-              <div className="stat-value text-lg font-bold text-white font-[family-name:var(--font-playfair)]" data-target={stat.value} data-suffix={stat.suffix}>
-                {stat.static ? stat.value : `0${stat.suffix}`}
-              </div>
-              <div className="mt-1 text-[9px] font-medium uppercase tracking-[0.15em] text-white/40 leading-tight">
-                {stat.label}
-              </div>
+      {/* Hero Content */}
+      <div className="relative z-20 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-5 pb-10 pt-24 sm:px-8 lg:px-12">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12 lg:gap-20">
+          <div className="flex-1 pt-6 sm:pt-10">
+            {/* Badge */}
+            <div
+              className={`mb-5 transition-all duration-700 ${
+                visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+              }`}
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10 px-4 py-1.5 text-[10px] font-medium tracking-[0.2em] text-[#D4AF37] uppercase backdrop-blur-sm sm:text-[11px]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]" />
+                Trusted Global Trade Partner
+              </span>
             </div>
-          ))}
-        </div>
 
-        <div className="mt-6 flex justify-center">
-          <div className="relative">
-            <AnimatedGlobe />
-            <div className="pointer-events-none absolute -inset-10 rounded-full"
-              style={{
-                background: "radial-gradient(circle, rgba(184,134,11,0.15) 0%, transparent 60%)",
-              }}
-            />
-          </div>
-        </div>
-      </div>
+            {/* Heading */}
+            <h1
+              className={`font-serif text-[clamp(2.2rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight text-white transition-all duration-700 delay-100 ${
+                visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+              }`}
+            >
+              Connecting Businesses<br className="hidden sm:block" /> Across{" "}
+              <span className="bg-gradient-to-r from-[#D4AF37] to-[#E8C84A] bg-clip-text text-transparent">
+                Global Markets
+              </span>
+            </h1>
 
-      {/* Desktop content */}
-      <div className="absolute inset-0 z-10 hidden items-center md:flex">
-        <div className="mx-auto w-full max-w-7xl px-6 lg:px-12">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <div className="hero-overline mb-5">
-                <span className="font-mono inline-flex items-center gap-3 text-xs tracking-[0.3em] text-amber-400/80 uppercase md:text-sm">
-                  <span className="h-px w-10 bg-amber-500/50" />
-                  Premier Global Trade Partner
-                </span>
-              </div>
+            {/* Subheading */}
+            <p
+              className={`mt-4 max-w-xl text-sm leading-relaxed text-white/50 transition-all duration-700 delay-200 sm:text-base ${
+                visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+              }`}
+            >
+              We provide end-to-end sourcing, import, export, logistics, and international trade solutions for businesses worldwide.
+            </p>
 
-              <h1 className="hero-heading font-[family-name:var(--font-playfair)] text-5xl font-bold leading-[1.08] text-white sm:text-6xl md:text-7xl lg:text-8xl">
-                {heading.split(" ").map((word, i) => (
-                  <span key={i} className="mr-[0.2em] inline-block overflow-hidden align-bottom">
-                    <span className="word inline-block will-change-transform">{word}</span>
+            {/* CTAs */}
+            <div
+              className={`mt-6 flex flex-col gap-3 transition-all duration-700 delay-300 sm:flex-row sm:gap-4 ${
+                visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+              }`}
+            >
+              <Link
+                href="/#contact"
+                className="group flex h-14 items-center justify-center gap-2.5 rounded-sm bg-gradient-to-r from-[#D4AF37] to-[#E8C84A] px-8 text-sm font-bold tracking-[0.15em] text-[#050B1A] uppercase transition-all duration-300 hover:shadow-xl hover:shadow-[#D4AF37]/30 sm:h-[56px] sm:w-auto sm:px-10"
+              >
+                Start Trading
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/services"
+                className="flex h-14 items-center justify-center gap-2.5 rounded-sm border border-white/20 px-8 text-sm font-bold tracking-[0.15em] text-white/70 uppercase backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:text-white sm:h-[56px] sm:w-auto sm:px-10"
+              >
+                Book Consultation
+              </Link>
+            </div>
+
+            {/* Trust Indicators */}
+            <div
+              className={`mt-6 flex flex-wrap gap-x-6 gap-y-2 transition-all duration-700 delay-[400ms] ${
+                visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+              }`}
+            >
+              {trustItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <span key={item.text} className="inline-flex items-center gap-1.5 text-[11px] text-white/40">
+                    <Icon className="h-3 w-3 text-[#D4AF37]/60" />
+                    {item.text}
                   </span>
-                ))}
-              </h1>
+                );
+              })}
+            </div>
+          </div>
 
-              <p className="hero-subhead mt-5 max-w-xl text-base leading-relaxed text-white/45 sm:text-lg md:mt-6 md:text-xl">
-                Import, export, sourcing, logistics and supply chain solutions
-                connecting businesses across international markets.
+          {/* Slide Category Card */}
+          <div
+            className={`hidden items-end justify-center transition-all duration-700 delay-200 md:flex md:justify-end ${
+              visible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"
+            }`}
+          >
+            <div className="w-full max-w-[280px] rounded-xl border border-white/10 bg-white/[0.06] p-5 backdrop-blur-md sm:max-w-[300px] sm:p-6">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4AF37]/70">
+                Current Export
               </p>
-
-              <div className="hero-cta mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5 md:mt-10">
-                <Link
-                  href="/#contact"
-                  className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-sm bg-gradient-to-r from-amber-500 to-amber-600 px-8 py-4 text-sm font-bold tracking-[0.15em] text-slate-900 uppercase transition-all duration-300 hover:from-amber-400 hover:to-amber-500 hover:shadow-xl hover:shadow-amber-500/25"
-                >
-                  <span className="relative z-10 flex items-center gap-2.5">
-                    Start Trading
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </Link>
-                <Link
-                  href="/services"
-                  className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-sm border border-white/15 px-8 py-4 text-sm font-bold tracking-[0.15em] text-white/70 uppercase transition-all duration-300 hover:border-white/30 hover:text-white"
-                >
-                  <span className="absolute inset-0 translate-y-full bg-white/5 transition-transform duration-300 group-hover:translate-y-0" />
-                  <span className="relative z-10">Explore Services</span>
-                </Link>
-              </div>
-            </div>
-
-            <div className="relative flex items-center justify-center">
-              <div className="relative">
-                <AnimatedGlobe />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e17] via-transparent to-transparent" />
-                <div
-                  className="absolute -inset-20 rounded-full pointer-events-none"
-                  style={{
-                    background: "radial-gradient(circle, rgba(184,134,11,0.05) 0%, transparent 60%)",
-                  }}
-                />
-              </div>
+              <h3 className="mt-2 font-serif text-lg font-bold leading-tight text-white sm:text-xl">
+                {slides[currentSlide].title}
+              </h3>
+              <ul className="mt-3 space-y-1.5">
+                {slides[currentSlide].items.map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-xs text-white/50">
+                    <span className="h-1 w-1 rounded-full bg-[#D4AF37]/60" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Desktop stats bar */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 hidden md:block">
-        <div className="border-t border-white/5 bg-gradient-to-b from-transparent to-[#070b12]/80 backdrop-blur-sm">
-          <div className="mx-auto max-w-7xl px-6 py-6 lg:px-12">
-            <div className="hero-stats grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-              {stats.map((stat) => (
-                <CountUp key={stat.label} target={stat.value} suffix={stat.suffix} label={stat.label} />
-              ))}
-            </div>
+      {/* Carousel Indicators */}
+      <div className="absolute bottom-28 left-0 right-0 z-20 flex justify-center gap-2 sm:bottom-32">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goToSlide(i)}
+            className={`h-1.5 rounded-full transition-all duration-500 ${
+              i === currentSlide
+                ? "w-8 bg-[#D4AF37]"
+                : "w-1.5 bg-white/30 hover:bg-white/50"
+            }`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Stats Bar */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-white/[0.04] bg-gradient-to-b from-transparent to-[#050B1A]/90 backdrop-blur-sm">
+        <div className="mx-auto max-w-7xl px-5 py-4 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-6">
+            {statsData.map((stat, i) => (
+              <StatCard
+                key={stat.label}
+                value={stat.value}
+                suffix={stat.suffix}
+                label={stat.label}
+                visible={statsVisible}
+                delay={i * 150}
+              />
+            ))}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function StatCard({
+  value,
+  suffix,
+  label,
+  visible,
+  delay,
+}: {
+  value: number;
+  suffix: string;
+  label: string;
+  visible: boolean;
+  delay: number;
+}) {
+  const [count, setCount] = useState(0);
+  const counted = useRef(false);
+
+  useEffect(() => {
+    if (!visible || counted.current) return;
+    counted.current = true;
+    const duration = 800;
+    const steps = 30;
+    const increment = value / steps;
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= value) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+    return () => clearInterval(timer);
+  }, [visible, value]);
+
+  return (
+    <div
+      className={`rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2.5 text-center backdrop-blur-sm transition-all duration-700 sm:px-4 sm:py-3 ${
+        visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <div className="font-serif text-lg font-bold text-white sm:text-xl">
+        {count}
+        {suffix}
+      </div>
+      <div className="mt-0.5 text-[9px] font-medium uppercase tracking-[0.15em] text-white/35 sm:text-[10px]">
+        {label}
+      </div>
+    </div>
   );
 }
