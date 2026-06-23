@@ -268,6 +268,49 @@ const categories: Category[] = [
       },
     ],
   },
+  {
+    id: "architecture",
+    icon: "🏛️",
+    label: "Architecture",
+    products: [
+      {
+        name: "Lighting Solutions",
+        image: "https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=600&q=80",
+        countries: ["UAE", "Singapore", "Qatar", "UK"],
+        description: "Decorative lighting, architectural lighting, and smart lighting systems for modern spaces.",
+      },
+      {
+        name: "Furniture Solutions",
+        image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80",
+        countries: ["USA", "Germany", "UAE", "Australia"],
+        description: "Residential furniture, commercial furniture, and custom interior furniture solutions.",
+      },
+      {
+        name: "Granite & Stone",
+        image: "https://images.unsplash.com/photo-1666034039348-0cf2eae58ebf?w=600&q=80",
+        countries: ["China", "Vietnam", "India", "Italy"],
+        description: "Premium granite, natural stone finishes, and imported stone products for luxury projects.",
+      },
+      {
+        name: "Tiles & Surface Materials",
+        image: "https://images.unsplash.com/photo-1615529328331-f8917597711f?w=600&q=80",
+        countries: ["Spain", "Italy", "UAE", "USA"],
+        description: "Floor tiles, wall tiles, and premium surface finishes for residential and commercial spaces.",
+      },
+      {
+        name: "Building Materials",
+        image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&q=80",
+        countries: ["Saudi Arabia", "Qatar", "Oman", "Kuwait"],
+        description: "Construction materials, structural components, and interior finishing products for large-scale projects.",
+      },
+      {
+        name: "Architectural Products",
+        image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80",
+        countries: ["Germany", "Singapore", "USA", "UAE"],
+        description: "Facade systems, interior design materials, and exterior design solutions for modern architecture.",
+      },
+    ],
+  },
 ];
 
 function ProductCard({ product, index }: { product: Product; index: number }) {
@@ -279,7 +322,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       transition={{ duration: 0.4, delay: index * 0.06 }}
       className="group"
     >
-      <div className="relative overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-[#D4AF37]/20 hover:bg-white/[0.04] hover:shadow-xl hover:shadow-[#D4AF37]/5">
+      <div       className="relative overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04] hover:shadow-xl hover:shadow-white/5">
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={product.image}
@@ -306,7 +349,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           </div>
         </div>
         <div className="p-5">
-          <h3 className="text-base font-bold text-white transition-colors duration-300 group-hover:text-[#D4AF37]">
+          <h3 className="text-base font-bold text-white transition-colors duration-300 group-hover:text-white">
             {product.name}
           </h3>
           <p className="mt-2 text-xs leading-relaxed text-white/40">
@@ -314,7 +357,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           </p>
           <Link
             href="/#contact"
-            className="mt-4 inline-flex items-center gap-1.5 rounded-sm border border-[#D4AF37]/20 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4AF37]/80 transition-all duration-300 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 hover:text-[#D4AF37]"
+            className="mt-4 inline-flex items-center gap-1.5 rounded-sm border border-white/20 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-white/80 transition-all duration-300 hover:border-white hover:bg-white/10 hover:text-white"
           >
             Request Quote
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5">&rarr;</span>
@@ -339,7 +382,7 @@ function CategoryButton({
       onClick={onClick}
       className={`relative flex-shrink-0 rounded-xl border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.12em] transition-all duration-300 ${
         isActive
-          ? "border-[#D4AF37] bg-[#D4AF37]/10 text-[#D4AF37] shadow-lg shadow-[#D4AF37]/10"
+          ? "border-white bg-white/10 text-white shadow-lg shadow-white/10"
           : "border-white/[0.06] bg-white/[0.02] text-white/50 hover:border-white/20 hover:bg-white/[0.05] hover:text-white/80"
       }`}
     >
@@ -361,12 +404,12 @@ export default function WhatWeExport() {
         className="absolute inset-0 opacity-[0.015]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(212,175,55,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.5) 1px, transparent 1px)",
+            "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />
       <div
-        className="absolute left-1/2 top-0 h-[1px] w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent"
+        className="absolute left-1/2 top-0 h-[1px] w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent"
       />
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -377,13 +420,13 @@ export default function WhatWeExport() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center sm:mb-16"
         >
-          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4AF37]/70">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">
             Export Excellence
           </span>
           <h2 className="mt-3 font-serif text-3xl font-bold text-white sm:text-4xl md:text-5xl">
             South Indian Products<br className="sm:hidden" /> Exported Worldwide
           </h2>
-          <div className="mx-auto mt-4 h-0.5 w-16 bg-[#D4AF37]/60" />
+          <div className="mx-auto mt-4 h-0.5 w-16 bg-white/60" />
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/40 sm:text-base">
             Connecting Global Markets with Premium South Indian Products and
             Industrial Solutions.
@@ -433,10 +476,10 @@ export default function WhatWeExport() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16 rounded-2xl border border-[#D4AF37]/10 bg-gradient-to-br from-[#D4AF37]/5 to-transparent p-8 text-center sm:mt-20 sm:p-12"
+          className="mt-16 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-8 text-center sm:mt-20 sm:p-12"
         >
-          <div className="mx-auto mb-1 flex h-12 w-12 items-center justify-center rounded-full bg-[#D4AF37]/10">
-            <svg className="h-6 w-6 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+          <div className="mx-auto mb-1 flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
+            <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
           </div>
@@ -449,7 +492,7 @@ export default function WhatWeExport() {
           </p>
           <Link
             href="/#contact"
-            className="mt-6 inline-flex h-12 items-center gap-2.5 rounded-sm bg-gradient-to-r from-[#D4AF37] to-[#E8C84A] px-7 text-xs font-bold uppercase tracking-[0.15em] text-[#050B1A] transition-all duration-300 hover:shadow-xl hover:shadow-[#D4AF37]/30 sm:h-[52px] sm:px-9"
+            className="mt-6 inline-flex h-12 items-center gap-2.5 rounded-sm bg-white px-7 text-xs font-bold uppercase tracking-[0.15em] text-[#050B1A] transition-all duration-300 hover:shadow-xl hover:shadow-white/10 sm:h-[52px] sm:px-9"
           >
             Talk to Our Export Experts
             <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

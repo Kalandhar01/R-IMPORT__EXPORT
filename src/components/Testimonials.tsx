@@ -24,7 +24,7 @@ const testimonials: Testimonial[] = [
     role: "Supply Chain Director",
     company: "West Africa Logistics Group",
     content:
-      "Ractysh transformed our supply chain operations across three continents. Their deep understanding of cross-border trade regulations saved us millions in tariffs.",
+      "RACTYSH EXIM PVT LTD transformed our supply chain operations across three continents. Their deep understanding of cross-border trade regulations saved us millions in tariffs.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
     rating: 5,
   },
@@ -60,7 +60,7 @@ const testimonials: Testimonial[] = [
     role: "Founder & CEO",
     company: "Gulf Star Enterprises",
     content:
-      "Ractysh's market intelligence gave us a competitive edge in the Middle East. Their network opened doors that were previously inaccessible.",
+      "RACTYSH EXIM PVT LTD's market intelligence gave us a competitive edge in the Middle East. Their network opened doors that were previously inaccessible.",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
     rating: 5,
   },
@@ -106,9 +106,9 @@ export default function Testimonials() {
   return (
     <section ref={sectionRef} className="relative w-full overflow-hidden bg-[#f8f7f4] px-4 py-24 md:px-12 lg:px-20">
       <div className="relative z-10 mx-auto mb-12 max-w-4xl text-center">
-        <motion.span initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-4 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-[#B8860B]">Client Testimonials</motion.span>
+        <motion.span initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-4 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-[#111827]">Client Testimonials</motion.span>
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="font-serif text-4xl font-bold leading-tight text-[#111827] md:text-5xl">Trusted by Global<br />Trade Leaders</motion.h2>
-        <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} transition={{ duration: 0.8, delay: 0.3 }} className="mx-auto mt-6 h-0.5 w-20 bg-[#B8860B]" />
+        <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} transition={{ duration: 0.8, delay: 0.3 }} className="mx-auto mt-6 h-0.5 w-20 bg-[#111827]" />
       </div>
 
       <div className="relative mx-auto max-w-6xl">
@@ -123,12 +123,12 @@ export default function Testimonials() {
           >
             <div className="mb-5 flex items-center gap-1">
               {Array.from({ length: testimonials[activeIndex].rating }).map((_, r) => (
-                <Star key={r} size={14} className="fill-[#B8860B] text-[#B8860B]" />
+                <Star key={r} size={14} className="fill-[#111827] text-[#111827]" />
               ))}
             </div>
             <p className="text-base leading-relaxed text-[#6b7280] md:text-lg">&ldquo;{testimonials[activeIndex].content}&rdquo;</p>
             <div className="mt-6 flex items-center gap-4 border-t border-gray-100 pt-6">
-              <div className="relative h-12 w-12 overflow-hidden rounded-full bg-[#b8860b]/10">
+              <div className="relative h-12 w-12 overflow-hidden rounded-full bg-black/5">
                 <Image src={testimonials[activeIndex].image} alt={testimonials[activeIndex].name} fill className="object-cover" sizes="48px" />
               </div>
               <div>
@@ -140,15 +140,15 @@ export default function Testimonials() {
         </AnimatePresence>
 
         <div className="mt-8 flex items-center justify-center gap-4">
-          <button onClick={prev} aria-label="Previous" className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-[#6b7280] transition-all hover:border-[#B8860B] hover:text-[#B8860B]">
+          <button onClick={prev} aria-label="Previous" className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-[#6b7280] transition-all hover:border-[#111827] hover:text-[#111827]">
             <ChevronLeft className="h-5 w-5" />
           </button>
           <div className="flex gap-2">
             {testimonials.map((_, i) => (
-              <button key={i} onClick={() => setActiveIndex(i)} aria-label={`Testimonial ${i + 1}`} className={`h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "w-8 bg-[#B8860B]" : "w-2 bg-gray-300"}`} />
+              <button key={i} onClick={() => setActiveIndex(i)} aria-label={`Testimonial ${i + 1}`} className={`h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "w-8 bg-[#111827]" : "w-2 bg-gray-300"}`} />
             ))}
           </div>
-          <button onClick={next} aria-label="Next" className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-[#6b7280] transition-all hover:border-[#B8860B] hover:text-[#B8860B]">
+          <button onClick={next} aria-label="Next" className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-[#6b7280] transition-all hover:border-[#111827] hover:text-[#111827]">
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>

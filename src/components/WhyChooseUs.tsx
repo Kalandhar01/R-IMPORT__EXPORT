@@ -25,9 +25,9 @@ const features = [
     metric: "50+",
     metricLabel: "Countries",
     gradient: "from-[#1a2235] to-[#0f172a]",
-    accent: "#b8860b",
-    statBg: "bg-[#b8860b]/10",
-    statText: "text-[#b8860b]",
+    accent: "#111827",
+    statBg: "bg-black/5",
+    statText: "text-[#111827]",
   },
   {
     title: "Strategic Partnerships",
@@ -37,9 +37,9 @@ const features = [
     metric: "100+",
     metricLabel: "Partners",
     gradient: "from-[#1a1f2e] to-[#0f172a]",
-    accent: "#b8860b",
-    statBg: "bg-[#b8860b]/10",
-    statText: "text-[#b8860b]",
+    accent: "#111827",
+    statBg: "bg-black/5",
+    statText: "text-[#111827]",
   },
   {
     title: "Regulatory Compliance",
@@ -49,9 +49,9 @@ const features = [
     metric: "99.9%",
     metricLabel: "Compliance Rate",
     gradient: "from-[#1a2235] to-[#0f172a]",
-    accent: "#b8860b",
-    statBg: "bg-[#b8860b]/10",
-    statText: "text-[#b8860b]",
+    accent: "#111827",
+    statBg: "bg-black/5",
+    statText: "text-[#111827]",
   },
   {
     title: "Fast Logistics",
@@ -61,9 +61,9 @@ const features = [
     metric: "40%",
     metricLabel: "Faster Transit",
     gradient: "from-[#1a1f2e] to-[#0f172a]",
-    accent: "#b8860b",
-    statBg: "bg-[#b8860b]/10",
-    statText: "text-[#b8860b]",
+    accent: "#111827",
+    statBg: "bg-black/5",
+    statText: "text-[#111827]",
   },
   {
     title: "Transparent Operations",
@@ -73,9 +73,9 @@ const features = [
     metric: "24/7",
     metricLabel: "Visibility",
     gradient: "from-[#1a2235] to-[#0f172a]",
-    accent: "#b8860b",
-    statBg: "bg-[#b8860b]/10",
-    statText: "text-[#b8860b]",
+    accent: "#111827",
+    statBg: "bg-black/5",
+    statText: "text-[#111827]",
   },
   {
     title: "Dedicated Support",
@@ -85,9 +85,9 @@ const features = [
     metric: "24/7",
     metricLabel: "Support",
     gradient: "from-[#1a1f2e] to-[#0f172a]",
-    accent: "#b8860b",
-    statBg: "bg-[#b8860b]/10",
-    statText: "text-[#b8860b]",
+    accent: "#111827",
+    statBg: "bg-black/5",
+    statText: "text-[#111827]",
   },
 ];
 
@@ -168,8 +168,8 @@ function FeatureCard({
   const handleMouseEnter = () => {
     gsap.to(cardRef.current, {
       y: -8,
-      boxShadow: "0 30px 60px -12px rgba(184,134,11,0.3)",
-      borderColor: "#b8860b",
+      boxShadow: "0 30px 60px -12px rgba(0,0,0,0.15)",
+      borderColor: "#111827",
       duration: 0.4,
       ease: "power2.out",
     });
@@ -210,7 +210,7 @@ function FeatureCard({
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           style={{
             background:
-              "radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(184,134,11,0.08), transparent 40%)",
+              "radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0,0,0,0.05), transparent 40%)",
           }}
         />
 
@@ -220,8 +220,8 @@ function FeatureCard({
 
         <div className="relative z-10 flex h-full flex-col">
           <div className="mb-6 flex items-center justify-between">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#b8860b]/10 ring-1 ring-[#b8860b]/20 group-hover:bg-[#b8860b]/20 transition-all duration-300">
-              <Icon className="h-5 w-5 text-[#b8860b]" strokeWidth={1.5} />
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-black/5 ring-1 ring-black/10 group-hover:bg-black/10 transition-all duration-300">
+              <Icon className="h-5 w-5 text-[#111827]" strokeWidth={1.5} />
             </div>
             <span className="text-xs font-bold tracking-[0.15em] text-[#475569]">
               {num}
@@ -259,9 +259,9 @@ export default function WhyChooseUs() {
       className="relative overflow-hidden bg-[#f8f7f4] px-6 py-24 md:px-12 lg:px-24"
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-[#b8860b]/5 blur-[120px]" />
-        <div className="absolute top-1/3 right-0 h-[300px] w-[300px] rounded-full bg-[#b8860b]/5 blur-[100px]" />
-        <div className="absolute bottom-0 left-0 h-[250px] w-[250px] rounded-full bg-[#b8860b]/5 blur-[80px]" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-black/5 blur-[120px]" />
+        <div className="absolute top-1/3 right-0 h-[300px] w-[300px] rounded-full bg-black/5 blur-[100px]" />
+        <div className="absolute bottom-0 left-0 h-[250px] w-[250px] rounded-full bg-black/5 blur-[80px]" />
       </div>
 
       <div
@@ -284,13 +284,13 @@ export default function WhyChooseUs() {
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#b8860b]"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#111827]"
           >
             <Sparkles className="h-3.5 w-3.5" />
-            Why Ractysh
+            Why RACTYSH EXIM PVT LTD
           </motion.span>
           <h2 className="mt-3 font-serif text-4xl font-bold tracking-tight md:text-5xl">
-            <span className="bg-gradient-to-r from-[#0f172a] via-[#b8860b] to-[#0f172a] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+            <span className="bg-gradient-to-r from-[#0f172a] via-[#111827] to-[#0f172a] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
               Why Choose Us
             </span>
           </h2>
@@ -298,7 +298,7 @@ export default function WhyChooseUs() {
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mx-auto mt-4 h-0.5 w-16 bg-[#b8860b] origin-center"
+            className="mx-auto mt-4 h-0.5 w-16 bg-[#111827] origin-center"
           />
           <motion.p
             initial={{ opacity: 0 }}

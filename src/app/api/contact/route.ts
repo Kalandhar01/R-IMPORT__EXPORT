@@ -70,7 +70,7 @@ export async function POST(request: Request) {
           : "    <li>Not specified</li>";
 
       await resend.emails.send({
-        from: process.env.EMAIL_FROM || "Ractysh Import Export <onboarding@resend.dev>",
+        from: process.env.EMAIL_FROM || "RACTYSH EXIM PVT LTD <onboarding@resend.dev>",
         to: adminEmail,
         subject: `New Trade Inquiry — ${subject || "General"} — ${name} from ${country || "Unknown"}`,
         html: `<!DOCTYPE html>
@@ -83,14 +83,14 @@ export async function POST(request: Request) {
     .card { background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
     .header { background: #0f172a; padding: 32px; text-align: center; }
     .header img { height: 36px; width: auto; }
-    .header h1 { color: #b8860b; font-size: 18px; margin: 12px 0 0; font-weight: 700; letter-spacing: 0.05em; }
+    .header h1 { color: #111827; font-size: 18px; margin: 12px 0 0; font-weight: 700; letter-spacing: 0.05em; }
     .header p { color: rgba(255,255,255,0.5); font-size: 12px; margin: 4px 0 0; }
     .body { padding: 32px; }
-    .badge { display: inline-block; background: #b8860b; color: #fff; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 12px; border-radius: 4px; margin-bottom: 16px; }
+    .badge { display: inline-block; background: #111827; color: #fff; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 12px; border-radius: 4px; margin-bottom: 16px; }
     .field { margin-bottom: 16px; }
     .field-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin-bottom: 2px; }
     .field-value { font-size: 14px; color: #0f172a; }
-    .field-value a { color: #b8860b; text-decoration: none; }
+    .field-value a { color: #111827; text-decoration: none; }
     .divider { height: 1px; background: #e5e7eb; margin: 20px 0; }
     ul { margin: 4px 0; padding-left: 20px; }
     ul li { font-size: 14px; color: #0f172a; margin-bottom: 4px; }
@@ -103,8 +103,8 @@ export async function POST(request: Request) {
   <div class="wrapper">
     <div class="card">
       <div class="header">
-        <img src="${SITE_URL}/logo.png" alt="Ractysh Global Trade" style="height:36px" />
-        <h1>RACTYSH GLOBAL TRADE</h1>
+        <img src="${SITE_URL}/logo.png" alt="RACTYSH EXIM PVT LTD" style="height:36px" />
+        <h1>RACTYSH EXIM PVT LTD</h1>
         <p>New Trade Inquiry</p>
       </div>
       <div class="body">
@@ -161,7 +161,7 @@ ${servicesList}
         </div>` : ""}
       </div>
       <div class="footer">
-        <p><strong>Ractysh Global Trade</strong></p>
+        <p><strong>RACTYSH EXIM PVT LTD</strong></p>
         <p>ID: ${submission.id}</p>
         <p>${new Date(submission.createdAt).toISOString()}</p>
       </div>

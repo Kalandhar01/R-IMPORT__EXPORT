@@ -156,13 +156,13 @@ export default function Hero() {
         <div
           className="absolute inset-0"
           style={{
-            background: "radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.05) 0%, transparent 60%)",
+            background: "radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.03) 0%, transparent 60%)",
           }}
         />
       </div>
 
       {/* Top gold accent line */}
-      <div className="absolute left-0 right-0 top-0 z-30 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" />
+      <div className="absolute left-0 right-0 top-0 z-30 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
       {/* Navbar */}
       <nav
@@ -176,7 +176,7 @@ export default function Hero() {
               <div className="relative h-12 w-12 overflow-hidden sm:h-14 sm:w-14">
                 <Image
                   src="/logo.png"
-                  alt="Ractysh Global Trade"
+                  alt="RACTYSH EXIM PVT LTD"
                   fill
                   sizes="56px"
                   className="object-contain"
@@ -187,8 +187,8 @@ export default function Hero() {
                 <span className="text-base font-bold leading-tight tracking-tight text-white sm:text-lg">
                   RACTYSH
                 </span>
-                <span className="text-[10px] font-medium tracking-[0.15em] text-[#D4AF37] sm:text-[11px]">
-                  Global Trade
+                <span className="text-[10px] font-medium tracking-[0.15em] text-white sm:text-[11px]">
+                  EXIM PVT LTD
                 </span>
               </div>
             </Link>
@@ -201,12 +201,12 @@ export default function Hero() {
                   className="group relative text-xs tracking-[0.15em] text-white/50 uppercase transition-colors duration-300 hover:text-white"
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-0 h-px w-0 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
               <Link
                 href="/#contact"
-                className="rounded-sm bg-[#D4AF37] px-5 py-2.5 text-xs font-bold tracking-[0.15em] text-[#050B1A] uppercase transition-all duration-300 hover:bg-[#E0C042]"
+                className="rounded-sm bg-white px-5 py-2.5 text-xs font-bold tracking-[0.15em] text-[#050B1A] uppercase transition-all duration-300 hover:bg-[#e5e5e5]"
               >
                 Get a Quote
               </Link>
@@ -242,7 +242,7 @@ export default function Hero() {
               <div className="pt-3">
                 <Link
                   href="/#contact"
-                  className="block rounded-lg bg-[#D4AF37] px-5 py-3.5 text-center text-xs font-bold tracking-[0.15em] text-[#050B1A] uppercase shadow-lg shadow-[#D4AF37]/20"
+                  className="block rounded-lg bg-white px-5 py-3.5 text-center text-xs font-bold tracking-[0.15em] text-[#050B1A] uppercase shadow-lg shadow-white/10"
                   onClick={() => setMobileOpen(false)}
                 >
                   Get a Quote
@@ -263,8 +263,8 @@ export default function Hero() {
                 visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
               }`}
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10 px-4 py-1.5 text-[10px] font-medium tracking-[0.2em] text-[#D4AF37] uppercase backdrop-blur-sm sm:text-[11px]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[10px] font-medium tracking-[0.2em] text-white uppercase backdrop-blur-sm sm:text-[11px]">
+                <span className="h-1.5 w-1.5 rounded-full bg-white" />
                 Trusted Global Trade Partner
               </span>
             </div>
@@ -276,7 +276,7 @@ export default function Hero() {
               }`}
             >
               Connecting Businesses<br className="hidden sm:block" /> Across{" "}
-              <span className="bg-gradient-to-r from-[#D4AF37] to-[#E8C84A] bg-clip-text text-transparent">
+              <span className="text-white">
                 Global Markets
               </span>
             </h1>
@@ -298,7 +298,7 @@ export default function Hero() {
             >
               <Link
                 href="/#contact"
-                className="group flex h-14 items-center justify-center gap-2.5 rounded-sm bg-gradient-to-r from-[#D4AF37] to-[#E8C84A] px-8 text-sm font-bold tracking-[0.15em] text-[#050B1A] uppercase transition-all duration-300 hover:shadow-xl hover:shadow-[#D4AF37]/30 sm:h-[56px] sm:w-auto sm:px-10"
+                className="group flex h-14 items-center justify-center gap-2.5 rounded-sm bg-white px-8 text-sm font-bold tracking-[0.15em] text-[#050B1A] uppercase transition-all duration-300 hover:shadow-xl hover:shadow-white/10 sm:h-[56px] sm:w-auto sm:px-10"
               >
                 Start Trading
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -321,7 +321,7 @@ export default function Hero() {
                 const Icon = item.icon;
                 return (
                   <span key={item.text} className="inline-flex items-center gap-1.5 text-[11px] text-white/40">
-                    <Icon className="h-3 w-3 text-[#D4AF37]/60" />
+                    <Icon className="h-3 w-3 text-white/60" />
                     {item.text}
                   </span>
                 );
@@ -336,7 +336,7 @@ export default function Hero() {
             }`}
           >
             <div className="w-full max-w-[280px] rounded-xl border border-white/10 bg-white/[0.06] p-5 backdrop-blur-md sm:max-w-[300px] sm:p-6">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4AF37]/70">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">
                 Current Export
               </p>
               <h3 className="mt-2 font-serif text-lg font-bold leading-tight text-white sm:text-xl">
@@ -345,7 +345,7 @@ export default function Hero() {
               <ul className="mt-3 space-y-1.5">
                 {slides[currentSlide].items.map((item) => (
                   <li key={item} className="flex items-center gap-2 text-xs text-white/50">
-                    <span className="h-1 w-1 rounded-full bg-[#D4AF37]/60" />
+                    <span className="h-1 w-1 rounded-full bg-white/60" />
                     {item}
                   </li>
                 ))}
@@ -363,7 +363,7 @@ export default function Hero() {
             onClick={() => goToSlide(i)}
             className={`h-1.5 rounded-full transition-all duration-500 ${
               i === currentSlide
-                ? "w-8 bg-[#D4AF37]"
+                ? "w-8 bg-white"
                 : "w-1.5 bg-white/30 hover:bg-white/50"
             }`}
             aria-label={`Go to slide ${i + 1}`}

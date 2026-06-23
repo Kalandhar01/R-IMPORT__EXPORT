@@ -85,14 +85,14 @@ export default function Dashboard() {
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo.png"
-            alt="Ractysh Global Trade"
+            alt="RACTYSH EXIM PVT LTD"
             width={120}
             height={34}
             className="h-8 w-auto object-contain"
           />
           <div className="hidden sm:block">
             <h1 className="text-base font-bold text-[#0f172a]">
-              Ractysh <span className="text-[#b8860b]">Admin</span>
+              RACTYSH EXIM PVT LTD <span className="text-[#111827]">Admin</span>
             </h1>
             <p className="text-[10px] text-[#6b7280]">Trade Inquiries</p>
           </div>
@@ -118,7 +118,7 @@ export default function Dashboard() {
           <div className="flex items-center gap-3">
             <h2 className="text-lg font-bold text-[#0f172a]">Submissions</h2>
             {unreadCount > 0 && (
-              <span className="rounded-full bg-[#b8860b]/10 px-2.5 py-0.5 text-[11px] font-semibold text-[#b8860b]">
+              <span className="rounded-full bg-[#111827]/10 px-2.5 py-0.5 text-[11px] font-semibold text-[#111827]">
                 {unreadCount} unread
               </span>
             )}
@@ -131,7 +131,7 @@ export default function Dashboard() {
                   onClick={() => { setFilter(f); setLoading(true); }}
                   className={`rounded-lg px-4 py-2 text-xs font-semibold transition ${
                     filter === f
-                      ? "bg-[#b8860b] text-white shadow-sm"
+                      ? "bg-[#111827] text-white shadow-sm"
                       : "border border-[#e5e7eb] bg-white text-[#6b7280] hover:bg-[#f8f7f4]"
                   }`}
                 >
@@ -144,14 +144,14 @@ export default function Dashboard() {
               placeholder="Search name, email, subject..."
               value={search}
               onChange={(e) => { setSearch(e.target.value); setLoading(true); }}
-              className="h-10 w-56 border border-[#e5e7eb] bg-white px-4 text-sm text-[#0f172a] outline-none focus:border-[#b8860b]"
+              className="h-10 w-56 border border-[#e5e7eb] bg-white px-4 text-sm text-[#0f172a] outline-none focus:border-[#111827]"
             />
           </div>
         </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#e5e7eb] border-t-[#b8860b]" />
+            <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#e5e7eb] border-t-[#111827]" />
           </div>
         ) : submissions.length === 0 ? (
           <div className="py-20 text-center text-sm text-[#6b7280]">No submissions found</div>
@@ -191,7 +191,7 @@ export default function Dashboard() {
                       </span>
                     </td>
                     <td className="px-4 py-3.5">
-                      <a href={`mailto:${s.email}`} className="text-[#6b7280] transition hover:text-[#b8860b]">
+                      <a href={`mailto:${s.email}`} className="text-[#6b7280] transition hover:text-[#111827]">
                         {s.email}
                       </a>
                     </td>
@@ -213,10 +213,10 @@ export default function Dashboard() {
                       <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold ${
                         s.read
                           ? "bg-green-50 text-green-700"
-                          : "bg-[#b8860b]/10 text-[#b8860b]"
+                          : "bg-[#111827]/10 text-[#111827]"
                       }`}>
                         <span className={`h-1.5 w-1.5 rounded-full ${
-                          s.read ? "bg-green-500" : "bg-[#b8860b]"
+                          s.read ? "bg-green-500" : "bg-[#111827]"
                         }`} />
                         {s.read ? "Read" : "New"}
                       </span>

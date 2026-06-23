@@ -136,12 +136,12 @@ export default function Footer() {
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 25% 25%, #B8860B 1px, transparent 1px), radial-gradient(circle at 75% 75%, #B8860B 1px, transparent 1px)",
+              "radial-gradient(circle at 25% 25%, rgba(255,255,255,0.15) 1px, transparent 1px), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.15) 1px, transparent 1px)",
             backgroundSize: "60px 60px, 80px 80px",
           }}
         />
-        <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
-        <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-amber-400/5 blur-3xl" />
+        <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-white/5 blur-3xl" />
         <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
       </div>
 
@@ -163,7 +163,7 @@ export default function Footer() {
               <div className="relative h-12 w-12 shrink-0 overflow-hidden sm:h-14 sm:w-14">
                 <Image
                   src="/logo.png"
-                  alt="Ractysh Global Trade"
+                  alt="RACTYSH EXIM PVT LTD"
                   fill
                   sizes="56px"
                   className="object-contain"
@@ -173,8 +173,8 @@ export default function Footer() {
                 <span className="text-base font-bold leading-tight tracking-tight text-white sm:text-lg">
                   RACTYSH
                 </span>
-                <span className="text-[10px] font-medium tracking-[0.15em] text-[#D4AF37] sm:text-[11px]">
-                  Global Trade
+                <span className="text-[10px] font-medium tracking-[0.15em] text-white sm:text-[11px]">
+                  EXIM PVT LTD
                 </span>
               </div>
             </div>
@@ -191,7 +191,7 @@ export default function Footer() {
                     key={i}
                     href={s.href}
                     aria-label={s.label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 text-slate-400 transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 sm:h-11 sm:w-11"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 text-slate-400 transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white sm:h-11 sm:w-11"
                   >
                     <Icon size={15} />
                   </a>
@@ -207,7 +207,7 @@ export default function Footer() {
               ref={(el) => setRevealRef(el, colIdx + 1)}
               className="lg:col-span-2"
             >
-              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-amber-400 sm:mb-5">
+              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-white sm:mb-5">
                 {column.title}
               </h4>
               <ul className="space-y-2 sm:space-y-3">
@@ -216,7 +216,7 @@ export default function Footer() {
                     <a
                       ref={(el) => setLinkRef(el, colIdx * 10 + i)}
                       href="#"
-                      className="text-sm text-slate-400 transition-all duration-300 hover:translate-x-1 hover:text-amber-300"
+                      className="text-sm text-slate-400 transition-all duration-300 hover:translate-x-1 hover:text-white"
                     >
                       {item}
                     </a>
@@ -231,20 +231,20 @@ export default function Footer() {
             ref={(el) => setRevealRef(el, 4)}
             className="col-span-2 md:col-span-2 lg:col-span-2"
           >
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-amber-400 sm:mb-5">
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-white sm:mb-5">
               Contact
             </h4>
             <ul className="space-y-3 sm:space-y-4">
               <li className="flex items-start gap-3 text-sm text-slate-400">
-                <Mail size={14} className="mt-0.5 shrink-0 text-amber-400" />
-                <span className="transition-colors hover:text-amber-300">trade@ractysh.com</span>
+                <Mail size={14} className="mt-0.5 shrink-0 text-white" />
+                <span className="transition-colors hover:text-white">ractyshexim@gmail.com</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-slate-400">
-                <Phone size={14} className="mt-0.5 shrink-0 text-amber-400" />
+                <Phone size={14} className="mt-0.5 shrink-0 text-white" />
                 <span>+91 98765 43210</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-slate-400">
-                <MapPin size={14} className="mt-0.5 shrink-0 text-amber-400" />
+                <MapPin size={14} className="mt-0.5 shrink-0 text-white" />
                 <span>
                   Coimbatore · Palani · Dindigul,
                   <br />
@@ -258,12 +258,12 @@ export default function Footer() {
         {/* Newsletter Section */}
         <div ref={(el) => setRevealRef(el, 5)} className="relative mt-12 overflow-hidden rounded-2xl border border-slate-700/50 bg-gradient-to-br from-slate-800 to-slate-900 p-6 sm:p-8 md:p-10">
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-amber-500/10 blur-3xl" />
+            <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-white/5 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-blue-500/5 blur-3xl" />
           </div>
           <div className="relative flex flex-col items-center gap-4 md:flex-row md:justify-between sm:gap-6">
             <div className="text-center md:text-left">
-              <h5 className="text-sm font-semibold uppercase tracking-[0.15em] text-amber-400">
+              <h5 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">
                 Stay Connected
               </h5>
               <p className="mt-1 text-sm text-slate-400 sm:mt-2">
@@ -279,7 +279,7 @@ export default function Footer() {
                   placeholder="Enter your email"
                   required
                   disabled={status === "loading" || status === "success"}
-                  className="h-11 w-full rounded-xl border border-slate-700 bg-slate-800/80 px-4 pr-10 text-sm text-white placeholder-slate-500 outline-none transition-all duration-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 disabled:cursor-not-allowed disabled:opacity-60 sm:h-12"
+                  className="h-11 w-full rounded-xl border border-slate-700 bg-slate-800/80 px-4 pr-10 text-sm text-white placeholder-slate-500 outline-none transition-all duration-300 focus:border-white focus:ring-2 focus:ring-white/20 disabled:cursor-not-allowed disabled:opacity-60 sm:h-12"
                 />
                 {status === "success" && (
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-400">
@@ -290,7 +290,7 @@ export default function Footer() {
               <button
                 type="submit"
                 disabled={status === "loading" || status === "success"}
-                className="flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 px-5 text-sm font-semibold text-white shadow-lg shadow-amber-500/25 transition-all duration-300 hover:from-amber-400 hover:to-amber-500 hover:shadow-amber-400/30 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:h-12 sm:px-6"
+                className="flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-semibold text-[#050B1A] shadow-lg shadow-white/10 transition-all duration-300 hover:bg-[#e5e5e5] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:h-12 sm:px-6"
               >
                 {status === "loading" ? (
                   <>
@@ -314,7 +314,7 @@ export default function Footer() {
           {message && (
             <p
               className={`relative mt-3 text-center text-xs md:text-left sm:mt-4 ${
-                status === "success" ? "text-emerald-400" : "text-red-400"
+                status === "success" ? "text-emerald-400" : "text-white/70"
               }`}
             >
               {message}
@@ -328,7 +328,7 @@ export default function Footer() {
             <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500 md:justify-start">
               <div className="flex items-center gap-1">
                 <Copyright size={12} />
-                <span>{new Date().getFullYear()} Ractysh Global Trade</span>
+                <span>2025 RACTYSH Group</span>
               </div>
               <span className="hidden text-slate-700 md:inline">|</span>
               <span className="flex items-center gap-1">
@@ -344,7 +344,7 @@ export default function Footer() {
               </div>
               <button
                 onClick={scrollToTop}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 text-slate-400 transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 sm:h-11 sm:w-11"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 text-slate-400 transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white sm:h-11 sm:w-11"
                 aria-label="Scroll to top"
               >
                 <ChevronUp size={16} />

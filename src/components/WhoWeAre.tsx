@@ -94,7 +94,7 @@ export default function WhoWeAre() {
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-[#0f172a]/60 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <div className="inline-flex items-center gap-3 rounded-full bg-[#b8860b]/90 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#111827] backdrop-blur-sm">
+                <div className="inline-flex items-center gap-3 rounded-full bg-[#111827]/90 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-sm">
                   Established 2010
                 </div>
               </div>
@@ -116,7 +116,7 @@ export default function WhoWeAre() {
               <h2 className="font-serif text-5xl leading-tight text-[#111827] md:text-7xl lg:text-8xl">
                 Who We Are
               </h2>
-              <div className="mt-6 h-1 w-20 bg-accent" />
+              <div className="mt-6 h-1 w-20 bg-[#111827]" />
             </div>
             <p className="who-reveal text-lg leading-relaxed text-[#6b7280] opacity-0">
               With decades of collective experience across global markets, we
@@ -145,7 +145,7 @@ export default function WhoWeAre() {
             <div className="who-reveal pt-2 opacity-0">
               <Link
                 href="/services"
-                className="group inline-flex items-center gap-2.5 bg-accent px-8 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-[#111827] transition-all duration-300 hover:bg-[#9a7209]"
+                className="group inline-flex items-center gap-2.5 bg-[#111827] px-8 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-[#e5e5e5]"
               >
                 Explore Our Services
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">

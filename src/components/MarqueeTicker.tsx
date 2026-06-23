@@ -51,7 +51,7 @@ export default function MarqueeTicker() {
             key={i}
             className="ticker-item flex items-center gap-3 whitespace-nowrap text-xs font-semibold uppercase tracking-[0.2em] text-[#6b7280]/60"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#b8860b]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#111827]" />
             {item}
           </span>
         ))}

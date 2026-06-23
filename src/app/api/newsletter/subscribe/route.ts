@@ -69,7 +69,7 @@ export async function POST(request: Request) {
   });
 
   const result = await sendResendEmail({
-    from: from || "Ractysh Global Trade <noreply@ractysh.com>",
+    from: from || "RACTYSH EXIM PVT LTD <noreply@ractysh.com>",
     to: [recipient],
     subject: welcomeEmail.subject,
     text: welcomeEmail.text,
@@ -91,7 +91,7 @@ export async function POST(request: Request) {
   return NextResponse.json(
     {
       success: true,
-      message: "Welcome! You are now subscribed to the Ractysh Trade Network.",
+      message: "Welcome! You are now subscribed to the RACTYSH EXIM PVT LTD Trade Network.",
     },
     { status: 200 },
   );

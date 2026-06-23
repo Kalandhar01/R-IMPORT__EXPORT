@@ -264,7 +264,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       transition={{ duration: 0.35, delay: index * 0.05 }}
       className="group"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-[#D4AF37]/25 hover:bg-white/[0.04] hover:shadow-xl hover:shadow-[#D4AF37]/5 hover:-translate-y-0.5">
+      <div       className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-white/25 hover:bg-white/[0.04] hover:shadow-xl hover:shadow-white/5 hover:-translate-y-0.5">
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={product.image}
@@ -275,13 +275,13 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050B1A] via-transparent to-transparent opacity-60" />
           {product.available && (
-            <span className="absolute right-3 top-3 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10 px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-[#D4AF37] backdrop-blur-sm">
+            <span className="absolute right-3 top-3 rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
               Export Ready
             </span>
           )}
         </div>
         <div className="p-5">
-          <h3 className="text-base font-bold text-white transition-colors duration-300 group-hover:text-[#D4AF37]">
+          <h3 className="text-base font-bold text-white transition-colors duration-300 group-hover:text-white">
             {product.name}
           </h3>
           <p className="mt-2 text-xs leading-relaxed text-white/40">
@@ -289,7 +289,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           </p>
           <Link
             href="/#contact"
-            className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-[#D4AF37]/15 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4AF37]/70 transition-all duration-300 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/8 hover:text-[#D4AF37]"
+            className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-white/70 transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:text-white"
           >
             Request Quote
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5">&rarr;</span>
@@ -313,12 +313,12 @@ export default function FeaturedServices() {
         className="absolute inset-0 opacity-[0.015]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(212,175,55,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.5) 1px, transparent 1px)",
+            "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />
       <div
-        className="absolute left-1/2 top-0 h-[1px] w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent"
+        className="absolute left-1/2 top-0 h-[1px] w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent"
       />
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -329,13 +329,13 @@ export default function FeaturedServices() {
           transition={{ duration: 0.6 }}
           className="mb-10 text-center sm:mb-14"
         >
-          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4AF37]/70">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">
             Premium Exports
           </span>
           <h2 className="mt-3 font-serif text-3xl font-bold text-white sm:text-4xl md:text-5xl">
             Our Export Categories
           </h2>
-          <div className="mx-auto mt-4 h-0.5 w-16 bg-[#D4AF37]/60" />
+          <div className="mx-auto mt-4 h-0.5 w-16 bg-white/60" />
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/40 sm:text-base">
             Delivering Premium South Indian Products and Industrial Solutions to
             Global Markets.
@@ -351,7 +351,7 @@ export default function FeaturedServices() {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`rounded-full border px-3 py-2 text-[10px] font-bold uppercase tracking-[0.1em] transition-all duration-300 sm:text-[11px] ${
                   isActive
-                    ? "border-[#D4AF37] bg-gradient-to-r from-[#D4AF37]/15 to-[#E8C84A]/10 text-[#D4AF37] shadow-lg shadow-[#D4AF37]/10"
+                    ? "border-white bg-white text-black shadow-lg shadow-white/10"
                     : "border-white/[0.06] bg-white/[0.02] text-white/50 hover:border-white/20 hover:bg-white/[0.05] hover:text-white/80"
                 }`}
               >
@@ -388,7 +388,7 @@ export default function FeaturedServices() {
         >
           <Link
             href="/services"
-            className="group inline-flex items-center gap-3 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-8 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-[#D4AF37]/80 transition-all duration-300 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 hover:text-[#D4AF37]"
+            className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-8 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-white/80 transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:text-white"
           >
             View All Export Categories
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>

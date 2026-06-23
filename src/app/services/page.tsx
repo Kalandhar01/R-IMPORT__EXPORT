@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/data/services";
@@ -53,7 +53,7 @@ function ServiceCard({
     if (!cardRef.current) return;
     gsap.to(cardRef.current, {
       y: -6,
-      boxShadow: "0 20px 60px -12px rgba(184,134,11,0.3)",
+      boxShadow: "0 20px 60px -12px rgba(0,0,0,0.15)",
       duration: 0.4,
       ease: "power2.out",
     });
@@ -62,14 +62,6 @@ function ServiceCard({
       gsap.to(img, {
         scale: 1.05,
         duration: 0.5,
-        ease: "power2.out",
-      });
-    }
-    const line = cardRef.current.querySelector(".card-line");
-    if (line) {
-      gsap.to(line, {
-        scaleX: 1,
-        duration: 0.4,
         ease: "power2.out",
       });
     }
@@ -91,14 +83,6 @@ function ServiceCard({
         ease: "power2.out",
       });
     }
-    const line = cardRef.current.querySelector(".card-line");
-    if (line) {
-      gsap.to(line, {
-        scaleX: 0,
-        duration: 0.4,
-        ease: "power2.out",
-      });
-    }
   };
 
   return (
@@ -107,7 +91,7 @@ function ServiceCard({
         href={`/services/${service.slug}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="group relative block overflow-hidden rounded-2xl border border-gray-200/60 bg-white shadow-sm transition-colors"
+        className="group relative block overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-md shadow-black/5 transition-colors"
       >
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
@@ -117,28 +101,22 @@ function ServiceCard({
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             className="card-img object-cover transition-all duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          <div className="absolute top-4 left-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#b8860b] text-xs font-bold text-white">
-            {num}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-5">
+            <h3 className="text-lg font-bold text-white">
+              {service.title}
+            </h3>
           </div>
         </div>
 
         <div className="p-5">
-          <h3 className="text-lg font-bold text-[#111827] transition-colors group-hover:text-[#b8860b]">
-            {service.title}
-          </h3>
-
-          <div className="card-line mt-3 h-0.5 w-10 origin-left scale-x-0 bg-[#b8860b]" />
-
-          <p className="mt-3 text-sm leading-relaxed text-[#6b7280]">
+          <p className="text-sm leading-relaxed text-[#6b7280]">
             {service.shortDescription}
           </p>
 
-          <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#b8860b] opacity-80 transition-all duration-300 group-hover:opacity-100">
-            Explore Service
-            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-              &rarr;
-            </span>
+          <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#111827] transition-all duration-300 group-hover:gap-3">
+            Learn More
+            <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-0.5" />
           </div>
         </div>
       </Link>
@@ -153,17 +131,24 @@ export default function ServicesPage() {
     <main className="min-h-screen bg-white">
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-white/95 px-6 py-4 backdrop-blur-md sm:px-10">
         <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/logo.png"
-            alt="Ractysh Global Trade"
-            width={140}
-            height={40}
-            className="h-9 w-auto object-contain"
-            priority
-          />
-          <span className="hidden text-base font-bold tracking-tight text-[#111827] sm:inline">
-            Ractysh <span className="text-[#b8860b]">Global Trade</span>
-          </span>
+          <div className="relative h-10 w-10 overflow-hidden">
+            <Image
+              src="/logo.png"
+              alt="RACTYSH EXIM PVT LTD"
+              fill
+              sizes="40px"
+              className="object-contain"
+              priority
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-bold leading-tight tracking-tight text-[#111827] sm:text-base">
+              RACTYSH
+            </span>
+            <span className="text-[9px] font-medium tracking-[0.15em] text-[#6b7280] sm:text-[10px]">
+              EXIM PVT LTD
+            </span>
+          </div>
         </Link>
         <div className="hidden items-center gap-8 text-sm font-medium text-[#111827]/70 sm:flex">
           <Link href="/" className="transition hover:text-[#111827]">Home</Link>
@@ -192,7 +177,7 @@ export default function ServicesPage() {
           )}
         >
           <div className="space-y-1 px-5 pb-5 pt-4">
-            {[{ label: "Home", href: "/" }, { label: "Services", href: "/#services" }, { label: "Contact", href: "/#contact" }].map((link) => (
+            {[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Contact", href: "/#contact" }].map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
@@ -201,7 +186,7 @@ export default function ServicesPage() {
               >
                 <span className="flex items-center justify-between">
                   {link.label}
-                  <span className="h-px w-0 bg-[#b8860b]/50 transition-all duration-300 group-hover:w-8" />
+                  <span className="h-px w-0 bg-[#111827]/50 transition-all duration-300 group-hover:w-8" />
                 </span>
               </Link>
             ))}
@@ -209,9 +194,11 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      <section className="relative overflow-hidden bg-white px-6 pt-32 pb-20 text-[#111827] sm:px-10 lg:px-16 lg:pt-40 lg:pb-28">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(184,134,11,0.08),transparent_50%)]" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(184,134,11,0.04),transparent_50%)]" />
+      <section className="relative overflow-hidden bg-[#050B1A] px-6 pt-32 pb-20 sm:px-10 lg:px-16 lg:pt-40 lg:pb-28">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute top-1/4 right-1/4 h-[400px] w-[400px] rounded-full bg-white/5 blur-[150px]" />
+          <div className="absolute bottom-1/4 left-1/3 h-[300px] w-[300px] rounded-full bg-white/5 blur-[120px]" />
+        </div>
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{
@@ -221,23 +208,13 @@ export default function ServicesPage() {
           }}
         />
         <div className="relative mx-auto max-w-[92rem]">
-          <Link
-            href="/"
-            className="mb-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#6b7280] transition-all duration-300 hover:text-[#111827]"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Back to Services
-          </Link>
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#b8860b]">
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-white/60">
             Our Services
           </p>
-          <h1 className="max-w-4xl text-4xl font-light leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Comprehensive Global{" "}
-            <span className="font-semibold text-[#b8860b]">Trade Services</span>
+          <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Comprehensive Global Trade Services
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-[#6b7280]/60">
+          <p className="mt-6 max-w-2xl text-base leading-8 text-white/50">
             From import and export to freight forwarding and supply chain
             management, we deliver end-to-end solutions for businesses trading
             across international markets.
@@ -247,7 +224,7 @@ export default function ServicesPage() {
 
       <section className="px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
         <div className="mx-auto max-w-[92rem]">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {services.map((service, index) => (
               <ServiceCard
                 key={service.slug}
@@ -260,21 +237,6 @@ export default function ServicesPage() {
       </section>
 
       <WhatWeExport />
-
-      <section className="px-6 pb-20 sm:px-10 lg:px-16 lg:pb-28">
-        <div className="mx-auto max-w-[92rem]">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#6b7280] transition-all duration-300 hover:text-[#111827]"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Back to Services
-          </Link>
-        </div>
-      </section>
-
       <Footer />
     </main>
   );

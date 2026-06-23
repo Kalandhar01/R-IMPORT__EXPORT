@@ -14,7 +14,7 @@ export function renderWelcomeEmailHtml(props: WelcomeEmailProps): string {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Ractysh Global Trade</title>
+  <title>Welcome to RACTYSH EXIM PVT LTD</title>
   <style>
     @media only screen and (max-width: 600px) {
       .container { width: 100% !important; border-radius: 0 !important; }
@@ -32,12 +32,12 @@ export function renderWelcomeEmailHtml(props: WelcomeEmailProps): string {
           <tr>
             <td class="pad" style="padding:40px 48px 0;text-align:center;">
               <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:16px;font-weight:700;letter-spacing:0.15em;color:#0f172a;text-transform:uppercase;">
-                Ractysh
+                RACTYSH EXIM PVT LTD
               </h1>
-              <p style="margin:2px 0 0;font-size:11px;font-weight:600;letter-spacing:0.3em;color:#b8860b;text-transform:uppercase;">
-                Global Trade
-              </p>
-              <div style="width:40px;height:2px;margin:20px auto 0;background-color:#b8860b;"></div>
+              <p style="margin:2px 0 0;font-size:11px;font-weight:600;letter-spacing:0.3em;color:#111827;text-transform:uppercase;">
+                EXIM PVT LTD
+                </p>
+              <div style="width:40px;height:2px;margin:20px auto 0;background-color:#111827;"></div>
             </td>
           </tr>
 
@@ -46,7 +46,7 @@ export function renderWelcomeEmailHtml(props: WelcomeEmailProps): string {
             <td class="pad" style="padding:36px 48px 0;text-align:center;">
               <h2 class="hero-title" style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:40px;font-weight:400;line-height:46px;letter-spacing:-0.02em;color:#0f172a;">
                 Welcome to the<br/>
-                <span style="font-weight:700;letter-spacing:-0.01em;">Ractysh Trade Network</span>
+                <span style="font-weight:700;letter-spacing:-0.01em;">RACTYSH EXIM PVT LTD Trade Network</span>
               </h2>
               <p style="margin:20px 0 0;font-size:16px;line-height:26px;color:#475569;">
                 Hello ${greeting},
@@ -84,7 +84,7 @@ export function renderWelcomeEmailHtml(props: WelcomeEmailProps): string {
           <!-- CTA -->
           <tr>
             <td class="pad" style="padding:36px 48px 40px;text-align:center;">
-              <a href="${websiteUrl}" style="display:inline-block;padding:16px 40px;border-radius:8px;background:linear-gradient(135deg,#b8860b,#9a7209);color:#ffffff;font-size:14px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">
+              <a href="${websiteUrl}" style="display:inline-block;padding:16px 40px;border-radius:8px;background:#111827;color:#ffffff;font-size:14px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">
                 Explore Services →
               </a>
             </td>
@@ -94,7 +94,7 @@ export function renderWelcomeEmailHtml(props: WelcomeEmailProps): string {
           <tr>
             <td style="padding:0 48px 32px;text-align:center;">
               <div style="height:1px;background-color:#e2e8f0;margin-bottom:24px;"></div>
-              <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:15px;font-weight:700;color:#0f172a;">Ractysh Global Trade</p>
+              <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:15px;font-weight:700;color:#0f172a;">RACTYSH EXIM PVT LTD</p>
               <p style="margin:10px 0 0;font-size:12px;color:#64748b;">
                 Coimbatore · Palani · Thidugul
               </p>
@@ -102,11 +102,11 @@ export function renderWelcomeEmailHtml(props: WelcomeEmailProps): string {
                 India · UAE · USA · UK · Germany
               </p>
               <p style="margin:16px 0 0;font-size:11px;color:#94a3b8;">
-                &copy; ${new Date().getFullYear()} Ractysh Global Trade. All rights reserved.
+                &copy; ${new Date().getFullYear()} RACTYSH Group. All rights reserved.
               </p>
               ${
                 unsubscribeUrl
-                  ? `<p style="margin:10px 0 0;font-size:11px;color:#94a3b8;">Sent to ${props.email} · <a href="${unsubscribeUrl}" style="color:#b8860b;text-decoration:underline;">Unsubscribe</a></p>`
+                  ? `<p style="margin:10px 0 0;font-size:11px;color:#94a3b8;">Sent to ${props.email} · <a href="${unsubscribeUrl}" style="color:#111827;text-decoration:underline;">Unsubscribe</a></p>`
                   : ""
               }
             </td>
@@ -126,7 +126,7 @@ export function renderWelcomeEmailText(props: WelcomeEmailProps): string {
   return [
     `Hello ${greeting},`,
     "",
-    "Welcome to the Ractysh Trade Network.",
+    "Welcome to the RACTYSH EXIM PVT LTD Trade Network.",
     "",
     "You are now connected to a premium global trade ecosystem. Expect curated market intelligence, logistics insights, and trade opportunity briefings delivered straight to your inbox.",
     "",
@@ -135,11 +135,11 @@ export function renderWelcomeEmailText(props: WelcomeEmailProps): string {
     "- Air Cargo",
     "- Supply Chain Solutions",
     "",
-    `Explore Ractysh Global Trade: ${websiteUrl}`,
+    `Explore RACTYSH EXIM PVT LTD: ${websiteUrl}`,
     "",
-    "Ractysh Global Trade",
+    "RACTYSH EXIM PVT LTD",
     "Coimbatore · Palani · Thidugul",
-    `© ${new Date().getFullYear()} Ractysh Global Trade. All rights reserved.`,
+    `© ${new Date().getFullYear()} RACTYSH Group. All rights reserved.`,
   ].join("\n");
 }
 
@@ -147,6 +147,6 @@ export function renderWelcomeEmail(props: WelcomeEmailProps) {
   return {
     html: renderWelcomeEmailHtml(props),
     text: renderWelcomeEmailText(props),
-    subject: "Welcome to the Ractysh Trade Network",
+    subject: "Welcome to the RACTYSH EXIM PVT LTD Trade Network",
   };
 }

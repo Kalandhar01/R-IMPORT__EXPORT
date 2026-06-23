@@ -152,7 +152,7 @@ export default function WorksManager() {
         <div className="flex items-center gap-3">
           <button
             onClick={openCreate}
-            className="rounded bg-[#b8860b] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#9a7209]"
+            className="rounded bg-[#111827] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#e5e5e5]"
           >
             + Add Work
           </button>
@@ -175,32 +175,32 @@ export default function WorksManager() {
               <div>
                 <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-[#6b7280]">Title</label>
                 <input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })}
-                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#b8860b]" />
+                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#111827]" />
               </div>
               <div>
                 <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-[#6b7280]">Country</label>
                 <input value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })}
-                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#b8860b]" />
+                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#111827]" />
               </div>
               <div>
                 <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-[#6b7280]">Industry</label>
                 <input value={form.industry} onChange={(e) => setForm({ ...form, industry: e.target.value })}
-                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#b8860b]" />
+                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#111827]" />
               </div>
               <div>
                 <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-[#6b7280]">Scope</label>
                 <input value={form.scope} onChange={(e) => setForm({ ...form, scope: e.target.value })}
-                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#b8860b]" />
+                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#111827]" />
               </div>
               <div>
                 <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-[#6b7280]">Result</label>
                 <input value={form.result} onChange={(e) => setForm({ ...form, result: e.target.value })}
-                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#b8860b]" />
+                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#111827]" />
               </div>
               <div>
                 <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-[#6b7280]">Image URL</label>
                 <input value={form.image} onChange={(e) => { setForm({ ...form, image: e.target.value }); setPreview(e.target.value); }}
-                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#b8860b]" />
+                  className="w-full border border-[#e5e7eb] px-3 py-2 text-sm outline-none focus:border-[#111827]" />
               </div>
             </div>
             {preview && (

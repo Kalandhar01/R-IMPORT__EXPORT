@@ -20,9 +20,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Ractysh Global Trade | Import, Export & Logistics Solutions",
+  title: "RACTYSH EXIM PVT LTD | Import, Export & Logistics Solutions",
   description:
-    "Premium import, export, sourcing, and logistics services for businesses worldwide. Connecting global markets through trusted trade solutions.",
+    "Premium import, export, sourcing, and logistics services for businesses worldwide. Connecting global markets through RACTYSH EXIM PVT LTD's trade solutions.",
   keywords: [
     "import services",
     "export services",

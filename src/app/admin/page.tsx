@@ -50,7 +50,7 @@ export default function AdminLogin() {
             placeholder="Password"
             autoFocus
             required
-            className="h-12 w-full border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition focus:border-[#b8860b]"
+            className="h-12 w-full border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition focus:border-[#111827]"
           />
 
           {error && <p className="text-sm text-red-400">{error}</p>}
@@ -58,7 +58,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className="flex h-12 w-full items-center justify-center bg-[#b8860b] text-sm font-bold uppercase tracking-wider text-white transition hover:bg-[#a07609] disabled:opacity-50"
+            className="flex h-12 w-full items-center justify-center bg-[#111827] text-sm font-bold uppercase tracking-wider text-white transition hover:bg-[#e5e5e5] disabled:opacity-50"
           >
             {loading ? "Checking..." : "Login"}
           </button>

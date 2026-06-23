@@ -37,7 +37,7 @@ export default function WorldMapSection() {
 
       <div className="relative mx-auto max-w-[96rem]">
         <div className="mx-auto mb-8 max-w-4xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#b8860b]">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#111827]">
             Global Trade Network
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#111827] sm:text-4xl lg:text-5xl">

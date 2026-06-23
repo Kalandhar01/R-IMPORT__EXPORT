@@ -72,7 +72,7 @@ export default function Portfolio() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-4 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-[#B8860B]"
+          className="mb-4 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-[#111827]"
         >
           Our Works
         </motion.span>
@@ -90,7 +90,7 @@ export default function Portfolio() {
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mx-auto mt-6 h-0.5 w-20 bg-[#B8860B]"
+          className="mx-auto mt-6 h-0.5 w-20 bg-[#111827]"
         />
       </div>
 
@@ -120,26 +120,26 @@ export default function Portfolio() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/90 via-[#0F172A]/30 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95" />
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <div className="mb-2 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-[#B8860B]">
+                  <div className="mb-2 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-[#111827]">
                     <MapPin size={12} />
                     <span>{item.country}</span>
                     <span className="text-[#6b7280]/60">|</span>
                     <BarChart3 size={12} />
                     <span>{item.industry}</span>
                   </div>
-                  <h3 className="text-xl font-bold leading-tight transition-colors duration-300 group-hover:text-[#B8860B]">
+                  <h3 className="text-xl font-bold leading-tight transition-colors duration-300 group-hover:text-[#111827]">
                     {item.title}
                   </h3>
                 </div>
 
-                <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#B8860B] text-[#111827] shadow-lg transition-all duration-500 opacity-80 group-hover:opacity-100">
+                <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#111827] text-white shadow-lg transition-all duration-500 opacity-80 group-hover:opacity-100">
                   <ArrowUpRight size={16} />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4 p-6">
                 <div>
-                  <p className="mb-1 text-xs font-medium uppercase tracking-wider text-[#B8860B]">
+                  <p className="mb-1 text-xs font-medium uppercase tracking-wider text-[#111827]">
                     Scope
                   </p>
                   <p className="text-sm font-semibold text-[#111827]">
@@ -147,11 +147,11 @@ export default function Portfolio() {
                   </p>
                 </div>
                 <div>
-                  <p className="mb-1 text-xs font-medium uppercase tracking-wider text-[#B8860B]">
+                  <p className="mb-1 text-xs font-medium uppercase tracking-wider text-[#111827]">
                     Result
                   </p>
                   <p className="flex items-center gap-1 text-sm font-semibold text-[#111827]">
-                    <Globe size={12} className="text-[#B8860B]" />
+                    <Globe size={12} className="text-[#111827]" />
                     {item.result}
                   </p>
                 </div>

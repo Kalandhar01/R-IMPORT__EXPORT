@@ -82,24 +82,24 @@ export default function ContactSection() {
         <div
           className="absolute inset-0"
           style={{
-            background: "radial-gradient(ellipse at 30% 20%, rgba(212,175,55,0.05) 0%, transparent 60%)",
+            background: "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.03) 0%, transparent 60%)",
           }}
         />
         <div
           className="absolute inset-0"
           style={{
-            background: "radial-gradient(ellipse at 70% 80%, rgba(212,175,55,0.03) 0%, transparent 50%)",
+            background: "radial-gradient(ellipse at 70% 80%, rgba(255,255,255,0.02) 0%, transparent 50%)",
           }}
         />
         <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
+              "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
-        <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+        <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -111,8 +111,8 @@ export default function ContactSection() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center sm:mb-16"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-1.5 text-[10px] font-medium tracking-[0.2em] text-[#D4AF37]/80 uppercase sm:text-[11px]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-[10px] font-medium tracking-[0.2em] text-white/80 uppercase sm:text-[11px]">
+            <span className="h-1.5 w-1.5 rounded-full bg-white" />
             Get In Touch
           </span>
           <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.5rem)] font-bold leading-[1.1] tracking-tight text-white">
@@ -135,7 +135,7 @@ export default function ContactSection() {
           >
             {/* Office Card */}
             <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-6 backdrop-blur-sm">
-              <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#D4AF37]">
+              <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-white">
                 <MapPin size={14} />
                 India Office — Tamil Nadu
               </h3>
@@ -147,27 +147,27 @@ export default function ContactSection() {
             {/* Contact Details */}
             <div className="space-y-3 rounded-xl border border-white/[0.06] bg-white/[0.03] p-6 backdrop-blur-sm">
               <div className="flex items-center gap-4">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#D4AF37]/20 bg-[#D4AF37]/10 text-[#D4AF37]">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-white/10 text-white">
                   <Mail size={14} />
                 </span>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#D4AF37]/70">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/70">
                     Email
                   </p>
                   <a
-                    href="mailto:trade@ractysh.com"
-                    className="text-sm text-white/60 transition hover:text-[#D4AF37]"
+                    href="mailto:ractyshexim@gmail.com"
+                    className="text-sm text-white/60 transition hover:text-white"
                   >
-                    trade@ractysh.com
+                    ractyshexim@gmail.com
                   </a>
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#D4AF37]/20 bg-[#D4AF37]/10 text-[#D4AF37]">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-white/10 text-white">
                   <Phone size={14} />
                 </span>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#D4AF37]/70">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/70">
                     Phone
                   </p>
                   <span className="text-sm text-white/60">+91 98765 43210</span>
@@ -176,8 +176,8 @@ export default function ContactSection() {
             </div>
 
             {/* Trust Note */}
-            <div className="rounded-xl border border-[#D4AF37]/10 bg-gradient-to-br from-[#D4AF37]/5 to-transparent p-5">
-              <p className="text-xs leading-relaxed text-[#D4AF37]/60">
+            <div className="rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-5">
+              <p className="text-xs leading-relaxed text-white/60">
                 &ldquo;We typically respond within 24 hours on business days. All
                 inquiries are handled with strict confidentiality.&rdquo;
               </p>
@@ -197,8 +197,8 @@ export default function ContactSection() {
             >
               {submitted ? (
                 <div className="flex flex-col items-center justify-center py-8 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10">
-                    <Check className="h-8 w-8 text-[#D4AF37]" />
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-white/10">
+                    <Check className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="mt-6 font-serif text-xl font-semibold text-white">
                     Thank You
@@ -214,26 +214,26 @@ export default function ContactSection() {
                   <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                     <label className="block">
                       <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
-                        Full Name <span className="text-[#D4AF37]">*</span>
+                        Full Name <span className="text-white">*</span>
                       </span>
                       <input
                         type="text"
                         name="name"
                         required
                         placeholder="John Doe"
-                        className="h-12 w-full border border-white/10 bg-white/[0.04] px-4 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#D4AF37]/50 focus:bg-white/[0.06]"
+                        className="h-12 w-full border border-white/10 bg-white/[0.04] px-4 text-sm text-white placeholder-white/20 outline-none transition focus:border-white/50 focus:bg-white/[0.06]"
                       />
                     </label>
                     <label className="block">
                       <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
-                        Email Address <span className="text-[#D4AF37]">*</span>
+                        Email Address <span className="text-white">*</span>
                       </span>
                       <input
                         type="email"
                         name="email"
                         required
                         placeholder="john@company.com"
-                        className="h-12 w-full border border-white/10 bg-white/[0.04] px-4 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#D4AF37]/50 focus:bg-white/[0.06]"
+                        className="h-12 w-full border border-white/10 bg-white/[0.04] px-4 text-sm text-white placeholder-white/20 outline-none transition focus:border-white/50 focus:bg-white/[0.06]"
                       />
                     </label>
                   </div>
@@ -242,14 +242,14 @@ export default function ContactSection() {
                   <div className="mt-4">
                     <label className="block">
                       <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
-                        Phone <span className="text-[#D4AF37]">*</span>
+                        Phone <span className="text-white">*</span>
                       </span>
                       <input
                         type="tel"
                         name="phone"
                         required
                         placeholder="+91 98765 43210"
-                        className="h-12 w-full border border-white/10 bg-white/[0.04] px-4 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#D4AF37]/50 focus:bg-white/[0.06]"
+                        className="h-12 w-full border border-white/10 bg-white/[0.04] px-4 text-sm text-white placeholder-white/20 outline-none transition focus:border-white/50 focus:bg-white/[0.06]"
                       />
                     </label>
                   </div>
@@ -269,14 +269,14 @@ export default function ContactSection() {
                             onClick={() => toggleService(category)}
                             className={`flex items-center gap-2 rounded-lg border px-3 py-2.5 text-left text-xs font-medium transition-all duration-200 ${
                               isSelected
-                                ? "border-[#D4AF37]/40 bg-[#D4AF37]/10 text-[#D4AF37]"
-                                : "border-white/10 bg-white/[0.03] text-white/50 hover:border-[#D4AF37]/30 hover:bg-[#D4AF37]/5"
+                                ? "border-white/40 bg-white/10 text-white"
+                                : "border-white/10 bg-white/[0.03] text-white/50 hover:border-white/30 hover:bg-white/5"
                             }`}
                           >
                             <span
                               className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-all ${
                                 isSelected
-                                  ? "border-[#D4AF37] bg-[#D4AF37] text-[#050B1A]"
+                                  ? "border-white bg-white text-[#050B1A]"
                                   : "border-white/20 bg-transparent"
                               }`}
                             >
@@ -294,7 +294,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="mt-6 flex h-13 w-full items-center justify-center gap-3 bg-gradient-to-r from-[#D4AF37] to-[#E8C84A] px-8 text-sm font-bold uppercase tracking-wider text-[#050B1A] shadow-lg shadow-[#D4AF37]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4AF37]/30 disabled:opacity-50"
+                    className="mt-6 flex h-13 w-full items-center justify-center gap-3 bg-white px-8 text-sm font-bold uppercase tracking-wider text-[#050B1A] shadow-lg shadow-white/10 transition-all duration-300 hover:shadow-xl hover:shadow-white/20 disabled:opacity-50"
                   >
                     {submitting ? (
                       <>
@@ -313,7 +313,7 @@ export default function ContactSection() {
                   </button>
 
                   {error && (
-                    <p className="mt-4 text-center text-sm text-red-400">{error}</p>
+                    <p className="mt-4 text-center text-sm text-white/70">{error}</p>
                   )}
                 </>
               )}

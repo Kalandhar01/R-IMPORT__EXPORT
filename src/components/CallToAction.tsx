@@ -13,8 +13,8 @@ export default function CallToAction() {
       ref={sectionRef}
       className="relative overflow-hidden bg-[#f8f7f4] px-6 py-24 md:px-12 lg:px-24 lg:py-32"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(184,134,11,0.08),transparent_60%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(184,134,11,0.05),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(17,24,39,0.05),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(17,24,39,0.03),transparent_50%)]" />
 
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -35,7 +35,7 @@ export default function CallToAction() {
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-xs font-bold uppercase tracking-[0.25em] text-[#b8860b]"
+          className="text-xs font-bold uppercase tracking-[0.25em] text-[#111827]"
         >
           Start Your Journey
         </motion.span>
@@ -48,7 +48,7 @@ export default function CallToAction() {
         >
           Ready to Transform Your
           <br />
-          <span className="text-[#b8860b]">Global Trade</span> Operations?
+          <span className="text-[#111827]">Global Trade</span> Operations?
         </motion.h2>
 
         <motion.p
@@ -69,7 +69,7 @@ export default function CallToAction() {
         >
           <Link
             href="/#contact"
-            className="group inline-flex items-center gap-2.5 bg-[#b8860b] px-10 py-4 text-sm font-bold uppercase tracking-[0.15em] text-[#111827] transition-all duration-300 hover:bg-[#9a7209] hover:shadow-xl hover:shadow-[#b8860b]/20"
+            className="group inline-flex items-center gap-2.5 bg-[#111827] px-10 py-4 text-sm font-bold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-[#e5e5e5] hover:shadow-xl hover:shadow-[#111827]/20"
           >
             Request Consultation
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">

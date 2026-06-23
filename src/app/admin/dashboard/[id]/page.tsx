@@ -57,7 +57,7 @@ export default function SubmissionDetail() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#f8f7f4]">
         <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-          <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#e5e7eb] border-t-[#b8860b]" />
+          <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#e5e7eb] border-t-[#111827]" />
           Loading...
         </div>
       </main>
@@ -69,7 +69,7 @@ export default function SubmissionDetail() {
       <main className="flex min-h-screen items-center justify-center bg-[#f8f7f4]">
         <div className="text-center">
           <p className="text-sm text-[#6b7280]">Submission not found</p>
-          <Link href="/admin/dashboard" className="mt-4 inline-block text-sm font-semibold text-[#b8860b] transition hover:text-[#9a7209]">Back to Dashboard</Link>
+          <Link href="/admin/dashboard" className="mt-4 inline-block text-sm font-semibold text-[#111827] transition hover:text-[#e5e5e5]">Back to Dashboard</Link>
         </div>
       </main>
     );
@@ -81,7 +81,7 @@ export default function SubmissionDetail() {
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo.png"
-            alt="Ractysh Global Trade"
+            alt="RACTYSH EXIM PVT LTD"
             width={100}
             height={28}
             className="h-7 w-auto object-contain"
@@ -108,10 +108,10 @@ export default function SubmissionDetail() {
                 <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${
                   submission.read
                     ? "bg-green-50 text-green-700"
-                    : "bg-[#b8860b]/10 text-[#b8860b]"
+                    : "bg-[#111827]/10 text-[#111827]"
                 }`}>
                   <span className={`h-1.5 w-1.5 rounded-full ${
-                    submission.read ? "bg-green-500" : "bg-[#b8860b]"
+                    submission.read ? "bg-green-500" : "bg-[#111827]"
                   }`} />
                   {submission.read ? "Read" : "New"}
                 </span>
@@ -125,7 +125,7 @@ export default function SubmissionDetail() {
 
         <div className="space-y-5">
           <div className="rounded-xl border border-[#e5e7eb] bg-white p-6 shadow-sm">
-            <h2 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.15em] text-[#b8860b] mb-5">
+            <h2 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.15em] text-[#111827] mb-5">
               <Tag className="h-3.5 w-3.5" />
               Subject
             </h2>
@@ -133,7 +133,7 @@ export default function SubmissionDetail() {
           </div>
 
           <div className="rounded-xl border border-[#e5e7eb] bg-white p-6 shadow-sm">
-            <h2 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.15em] text-[#b8860b] mb-5">
+            <h2 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.15em] text-[#111827] mb-5">
               <Mail className="h-3.5 w-3.5" />
               Contact Information
             </h2>
@@ -142,7 +142,7 @@ export default function SubmissionDetail() {
                 <Mail className="mt-0.5 h-4 w-4 text-[#9ca3af]" />
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6b7280]">Email</p>
-                  <a href={`mailto:${submission.email}`} className="text-sm text-[#b8860b] transition hover:text-[#9a7209]">{submission.email}</a>
+                  <a href={`mailto:${submission.email}`} className="text-sm text-[#111827] transition hover:text-[#e5e5e5]">{submission.email}</a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -178,13 +178,13 @@ export default function SubmissionDetail() {
 
           {submission.services && (
             <div className="rounded-xl border border-[#e5e7eb] bg-white p-6 shadow-sm">
-              <h2 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.15em] text-[#b8860b] mb-4">
+              <h2 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.15em] text-[#111827] mb-4">
                 <Tag className="h-3.5 w-3.5" />
                 Services Interested In
               </h2>
               <div className="flex flex-wrap gap-2">
                 {submission.services.split(", ").map((s) => (
-                  <span key={s} className="rounded-full bg-[#b8860b]/10 px-3 py-1.5 text-xs font-medium text-[#b8860b]">
+                  <span key={s} className="rounded-full bg-[#111827]/10 px-3 py-1.5 text-xs font-medium text-[#111827]">
                     {s}
                   </span>
                 ))}
@@ -194,7 +194,7 @@ export default function SubmissionDetail() {
 
           {submission.message && (
             <div className="rounded-xl border border-[#e5e7eb] bg-white p-6 shadow-sm">
-              <h2 className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#b8860b] mb-4">
+              <h2 className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#111827] mb-4">
                 Message
               </h2>
               <div className="rounded-lg bg-[#f8f7f4] p-4">
