@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Globe,
@@ -11,7 +12,6 @@ import {
   MapPin,
   Phone,
   Copyright,
-  Shield,
   ChevronUp,
   Check,
   Loader2,
@@ -33,6 +33,12 @@ const services = [
 const footerLinks = [
   { title: "Quick Links", items: quickLinks },
   { title: "Services", items: services },
+];
+
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-and-conditions" },
+  { label: "Disclaimer", href: "/disclaimer" },
 ];
 
 const socialLinks = [
@@ -226,6 +232,28 @@ export default function Footer() {
             </div>
           ))}
 
+          {/* Legal Column */}
+          <div
+            ref={(el) => setRevealRef(el, 3)}
+            className="lg:col-span-2"
+          >
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-white sm:mb-5">
+              Legal
+            </h4>
+            <ul className="space-y-2 sm:space-y-3">
+              {legalLinks.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-slate-400 transition-all duration-300 hover:translate-x-1 hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact Column */}
           <div
             ref={(el) => setRevealRef(el, 4)}
@@ -328,13 +356,8 @@ export default function Footer() {
             <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500 md:justify-start">
               <div className="flex items-center gap-1">
                 <Copyright size={12} />
-                <span>2025 RACTYSH Group</span>
+                <span>2025 RACTYSH GROUP. All Rights Reserved.</span>
               </div>
-              <span className="hidden text-slate-700 md:inline">|</span>
-              <span className="flex items-center gap-1">
-                <Shield size={12} />
-                All rights reserved
-              </span>
             </div>
             <div className="flex items-center gap-3 sm:gap-4">
               <div className="flex items-center gap-1 text-xs text-slate-500">
