@@ -2,7 +2,70 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { rateLimit, rateLimitKey } from "@/lib/rateLimit";
 
-const SITE_URL = process.env.SITE_URL || "http://localhost:3000";
+const SITE_URL = process.env.SITE_URL || "https://exports.ractysh.com";
+
+function display(value: string | null | undefined): string {
+  const trimmed = value?.trim();
+  return trimmed || "Not provided";
+}
+
+function renderAutoReplyHtml(data: {
+  name: string; email: string; phone: string;
+  company: string | null; country: string | null;
+  subject: string | null; services: string | string[] | null;
+  message: string | null;
+}): string {
+  const fields: Array<[string, string]> = [
+    ["Name", data.name],
+    ["Email", data.email],
+    ["Phone", data.phone],
+    ["Company", display(data.company)],
+    ["Country", display(data.country)],
+    ["Subject", data.subject || "General Inquiry"],
+  ];
+  const servicesStr = data.services
+    ? (Array.isArray(data.services) ? data.services.join(", ") : data.services)
+    : null;
+  if (servicesStr) fields.push(["Services", servicesStr]);
+
+  const fieldRows = fields
+    .map(([label, value]) => `
+    <tr><td style="padding:6px 0;font-size:14px;line-height:20px;color:#62584e;border-bottom:1px solid #f0ebe2">
+      <span style="font-weight:600;color:#20130f;display:inline-block;width:120px">${escapeHtml(label)}</span>
+      <span style="color:#4a3f35">${escapeHtml(value)}</span>
+    </td></tr>`)
+    .join("");
+
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thank You — RACTYSH Exim</title></head>
+<body style="margin:0;padding:0;background-color:#f8f3ea;font-family:Georgia,'Times New Roman',serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8f3ea"><tr><td align="center" style="padding:40px 16px">
+<table width="540" cellpadding="0" cellspacing="0" style="max-width:540px;width:100%">
+<tr><td style="background:linear-gradient(135deg,#0a0806,#1c120e);border-radius:12px 12px 0 0;padding:32px 40px 24px;text-align:center">
+<table cellpadding="0" cellspacing="0" style="margin:0 auto">
+<tr><td style="font-size:28px;font-weight:700;letter-spacing:2px;color:#d9bd7a;font-family:Georgia,'Times New Roman',serif">RACTYSH Exim</td></tr>
+<tr><td style="font-size:11px;font-weight:400;letter-spacing:4px;color:#d9bd7a;padding-top:4px;text-transform:uppercase">Global Trade & Imports</td></tr>
+</table></td></tr>
+<tr><td style="background-color:#ffffff;padding:40px 40px 32px;border-left:1px solid #e8ddca;border-right:1px solid #e8ddca">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr><td style="font-size:28px;font-weight:700;color:#20130f;padding-bottom:8px;font-family:Georgia,'Times New Roman',serif">Thank You, ${escapeHtml(data.name)}</td></tr>
+<tr><td style="height:3px;width:48px;background-color:#d9bd7a;margin:0 0 24px;display:block"></td></tr>
+<tr><td style="font-size:16px;line-height:26px;color:#62584e;padding-bottom:16px">We have received your inquiry. A member of our trade team will reach out within <strong style="color:#20130f">24–48 business hours</strong>.</td></tr>
+<tr><td><table cellpadding="0" cellspacing="0" width="100%">
+<tr><td style="padding:16px 0 8px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#a47a2d;font-family:Arial,sans-serif">Your Submission Details</td></tr>
+${fieldRows}
+</table></td></tr>
+${data.message ? `<tr><td style="padding:16px 0 0">
+<div style="padding:16px;border-left:3px solid #a47a2d;background:#fcf9f4;border-radius:8px">
+<p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#a47a2d;font-family:Arial,sans-serif">Your Message</p>
+<p style="margin:0;font-size:14px;line-height:22px;color:#4a3f35">${escapeHtml(data.message)}</p>
+</div></td></tr>` : ""}
+</table></td></tr>
+<tr><td style="background:linear-gradient(135deg,#0a0806,#1c120e);border-radius:0 0 12px 12px;padding:24px 40px;text-align:center">
+<p style="font-size:12px;line-height:18px;color:#9d8a74;margin:0;font-family:Arial,Helvetica,sans-serif">RACTYSH EXIM PVT LTD</p>
+<p style="font-size:11px;line-height:18px;color:#7a6a58;margin:4px 0 0;font-family:Arial,Helvetica,sans-serif">This is an automated acknowledgement.</p>
+</td></tr>
+</table></td></tr></table></body></html>`;
+}
 
 function escapeHtml(s: string): string {
   return s
@@ -61,7 +124,7 @@ export async function POST(request: Request) {
     try {
       const { Resend } = await import("resend");
       const resend = new Resend(process.env.RESEND_API_KEY);
-      const adminEmail = process.env.ADMIN_EMAIL || "kalandars2004@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL || "ractysh@gmail.com";
 
       const servicesList = Array.isArray(services) && services.length
         ? services.map((s: string) => `    <li>${s}</li>`).join("\n")
@@ -173,6 +236,17 @@ ${servicesList}
     } catch (emailErr) {
       console.error("Failed to send email notification:", emailErr);
     }
+
+    (async () => {
+      const { Resend } = await import("resend");
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      resend.emails.send({
+        from: process.env.EMAIL_FROM || "RACTYSH EXIM PVT LTD <onboarding@resend.dev>",
+        to: [email],
+        subject: `Thank You, ${name} — RACTYSH Exim`,
+        html: renderAutoReplyHtml({ name, email, phone, company, country, subject, services, message }),
+      }).catch((err) => console.error("[import-export-contact] Auto-reply send failed:", err));
+    })().catch((err) => console.error("[import-export-contact] Auto-reply wrapper failed:", err));
 
     return NextResponse.json({
       message:
